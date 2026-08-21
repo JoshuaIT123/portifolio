@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Project preview placeholder">
+  <rect width="800" height="500" fill="#161616"/>
+  <rect x="200" y="120" width="400" height="260" rx="12" fill="#101010" stroke="#262626" stroke-width="2"/>
+  <g fill="#262626">
+    <circle cx="228" cy="148" r="6"/>
+    <circle cx="250" cy="148" r="6"/>
+    <circle cx="272" cy="148" r="6"/>
+  </g>
+  <g stroke-linecap="round" stroke-width="8">
+    <path d="M232 200 h70" stroke="#d4ff3d"/>
+    <path d="M232 232 h180" stroke="#9a9a9a" stroke-opacity="0.5"/>
+    <path d="M252 264 h160" stroke="#9a9a9a" stroke-opacity="0.35"/>
+    <path d="M232 296 h120" stroke="#9a9a9a" stroke-opacity="0.5"/>
+    <path d="M232 336 h24" stroke="#d4ff3d" stroke-opacity="0.9"/>
+  </g>
+</svg>

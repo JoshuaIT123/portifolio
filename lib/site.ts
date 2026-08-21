@@ -4,6 +4,9 @@
  * editable in one place.
  * ------------------------------------------------------------------------- */
 
+import type { LucideIcon } from "lucide-react";
+import { Code2, Handshake, Layers, MapPin } from "lucide-react";
+
 export const siteConfig = {
   /** Wordmark shown top-left + footer. Rendered uppercase via CSS. */
   name: "Arsene Mucyuneje Hirwa",
@@ -15,11 +18,17 @@ export const siteConfig = {
   description:
     "I build digital products, web applications & AI systems that solve real problems.",
   githubUrl: "https://github.com/mucyuneje",
+  /** Shown as icon links in the hero — REPLACE with your real profiles */
+  linkedinUrl: "https://www.linkedin.com/in/arsene-mucyuneje",
+  email: "hello@mucyuneje.space",
+  /** WhatsApp — wa.me link uses the number in international format, no "+" */
+  whatsappUrl: "https://wa.me/250784222615",
+  instagramUrl: "https://instagram.com/mucyuneje",
 };
 
 /** Profile photo — drop your picture in /public/images and update the path. */
 export const profile = {
-  avatar: "/images/profile-placeholder.svg",
+  avatar: "/images/profile.jpg",
   avatarAlt: "Portrait of Arsene Mucyuneje Hirwa",
 };
 
@@ -30,40 +39,48 @@ export type NavItem = {
   active?: boolean;
 };
 
-/** Shared by desktop sidebar + mobile drawer. Anchors map to section ids. */
+/** Shared by desktop sidebar + mobile drawer. Anchors map to section ids;
+ *  the "/#" form keeps them working from sub-routes like /achievements. */
 export const navItems: NavItem[] = [
-  { label: "Intro", href: "#intro", active: true },
-  { label: "Work", href: "#work" },
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "Contact", href: "#contact" },
+  { label: "Intro", href: "/#intro", active: true },
+  { label: "Work", href: "/#work" },
+  { label: "About", href: "/#about" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Experience", href: "/#experience" },
+  { label: "Achievements", href: "/#achievements" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export const heroContent = {
-  /** Rendered once as the hero brand block (uppercase via CSS). */
-  fullName: "Arsene Mucyuneje Hirwa",
-  role: "Software Engineer & IT Consultant",
+  /** Identity badge above the role kicker — hidden on lg+, where the
+   *  sidebar already shows the name (mobile/tablet keep it above the menu) */
+  identity: "Mucyuneje Hirwa Arsene",
+  /** Role + base line, rendered as the accent kicker */
+  role: "Software Developer & IT Consultant based in Rwanda",
   headline:
     "I build digital products, web applications & AI systems that solve real problems.",
-  primaryCta: { label: "View my work", href: "#work" },
-  secondaryCta: { label: "Contact me", href: "#contact" },
+  /** Shorter variant shown below the md breakpoint */
+  headlineShort: "I build web applications, digital products & AI systems.",
 };
 
 export type Project = {
   title: string;
   description: string;
+  /** 16:10 preview image — swap in real screenshots when available */
+  image: string;
   /** Tech names — resolved to icons via lib/tech-icons.ts */
   tech: string[];
   /** No live URLs provided yet — projects link to GitHub. */
   href: string;
 };
 
+/** The Selected Work section renders the first three as a curated preview. */
 export const projects: Project[] = [
   {
-    title: "AI-Powered Talent Screening",
+    title: "Echelon",
     description:
       "AI-powered software designed to help organizations screen and evaluate candidates more efficiently.",
+    image: "/images/Echlon-Work1.png",
     tech: ["AI", "Python", "Web Development"],
     href: siteConfig.githubUrl,
   },
@@ -71,6 +88,7 @@ export const projects: Project[] = [
     title: "School Asset Management",
     description:
       "A digital system for managing organizational assets, employees, assignments and asset history.",
+    image: "/images/RebaBus-Work2.png",
     tech: ["Next.js", "Node.js", "MySQL"],
     href: siteConfig.githubUrl,
   },
@@ -78,6 +96,7 @@ export const projects: Project[] = [
     title: "RebaBus",
     description:
       "A real-time public transportation tracking platform designed to make bus movement easier to monitor.",
+    image: "/images/work-3.svg",
     tech: ["React", "Node.js", "Real-time Systems"],
     href: siteConfig.githubUrl,
   },
@@ -85,6 +104,7 @@ export const projects: Project[] = [
     title: "AgriMarketAI",
     description:
       "An AI-powered agricultural technology project focused on using intelligent systems to solve real-world farming challenges.",
+    image: "/images/work-1.svg",
     tech: ["Python", "AI", "Machine Learning"],
     href: siteConfig.githubUrl,
   },
@@ -92,67 +112,84 @@ export const projects: Project[] = [
 
 export const aboutContent = {
   intro:
-    "I'm Arsene, a software developer from Rwanda focused on building practical digital products. I enjoy turning real-world problems into simple, useful software.",
+    "I'm Arsene, a software developer from Rwanda who builds web applications, business systems and AI-powered solutions. I work across frontend, backend and databases, turning real-world problems into practical software.",
   facts: [
-    { label: "Based in", value: "Rwanda" },
-    { label: "Focus", value: "Software · AI · Digital Products" },
-  ],
+    { icon: MapPin, label: "Based in", value: "Rwanda" },
+    { icon: Layers, label: "Focus", value: "Software · Web · AI" },
+    { icon: Code2, label: "Role", value: "Developer · Consultant" },
+    {
+      icon: Handshake,
+      label: "Available for",
+      value: "Projects · Freelance · Collaboration",
+    },
+  ] satisfies { icon: LucideIcon; label: string; value: string }[],
 };
-
-export const services = [
-  {
-    title: "Web Development",
-    description: "Modern websites and web applications built around real user needs.",
-  },
-  {
-    title: "Business Systems",
-    description: "Custom software for organizations and businesses.",
-  },
-  {
-    title: "AI & Automation",
-    description:
-      "Intelligent tools that automate repetitive work and solve practical problems.",
-  },
-];
 
 export const tools = [
   { category: "Frontend", items: ["React", "Next.js", "Vue", "Tailwind CSS"] },
   { category: "Backend", items: ["Node.js", "Express", "PHP"] },
-  { category: "Data", items: ["MySQL", "MongoDB"] },
+  { category: "Database", items: ["MySQL", "MongoDB"] },
   { category: "AI", items: ["Python", "Machine Learning"] },
   { category: "Tools", items: ["Git", "GitHub", "Docker"] },
 ];
 
-export const experience = [
+export type ExperienceEntry = {
+  org: string;
+  role: string;
+  description: string;
+  /** Period label, e.g. "2024 — Present" (optional) */
+  date?: string;
+  /** Small pill badges above the title */
+  tags?: string[];
+  /** Key achievements rendered as a bulleted list */
+  responsibilities?: string[];
+  /** Company logo path under /public (initials fallback when omitted) */
+  logo?: string;
+};
+
+export const experience: ExperienceEntry[] = [
   {
     org: "UBWAMI TechHouse",
-    role: "Software Development",
-    description: "Building digital products and software solutions.",
+    role: "Founder & Lead Developer",
+    date: "2024 — Present",
+    tags: ["Founder", "Full-Stack"],
+    logo: "/images/ubwamitechhouse.png",
+    description:
+      "Leading software engineering initiatives, architecture and deployment for digital products and full-stack client solutions.",
+    responsibilities: [
+      "Designed and deployed scalable web applications using React, Next.js and Node.js.",
+      "Integrated Gemini AI APIs for automated talent screening and résumé processing.",
+      "Engineered real-time tracking backends with WebSockets and Node.js.",
+    ],
   },
   {
     org: "City of Kigali",
-    role: "IT Internship",
+    role: "IT & Systems Intern",
+    date: "2024",
+    tags: ["Internship", "IT Support"],
+    logo: "/images/cityofkigali.jpg",
     description:
-      "Experience working with technology in a professional environment.",
+      "Managed technical infrastructure and provided hands-on system troubleshooting in a professional environment.",
+    responsibilities: [
+      "Maintained internal network systems, hardware infrastructure and software deployments.",
+      "Assisted administrative teams with IT workflow optimizations and system diagnostics.",
+    ],
   },
   {
     org: "School Leadership",
     role: "Leadership & Coordination",
+    tags: ["Leadership"],
+    logo: "/images/msgrmubiligileadership.jpeg",
     description:
       "Experience in student leadership, coordination and responsibility.",
   },
   {
     org: "iLead Rwanda",
     role: "Leadership Development",
+    tags: ["Program"],
+    logo: "/images/ileadprogram.jpg",
     description: "Leadership development and personal growth program.",
   },
-];
-
-export const achievements = [
-  { title: "AI Hackathon", result: "National Top 10 Finalist" },
-  { title: "AWS", result: "Cloud Computing Certification" },
-  { title: "IBM SkillsBuild", result: "Artificial Intelligence" },
-  { title: "iLead Rwanda", result: "Leadership Development Program" },
 ];
 
 export const githubSection = {
@@ -166,13 +203,13 @@ export const finalCta = {
   description:
     "Have a project, business problem, or idea that could become software?",
   cta: "Get in touch ↗",
-  // No email provided yet — points to GitHub; swap in a mailto: link when ready.
-  href: siteConfig.githubUrl,
+  // Direct line — the mailto: link uses the real address from siteConfig.
+  href: `mailto:${siteConfig.email}`,
 };
 
 export const socials = [
   { label: "GitHub", href: siteConfig.githubUrl },
-  // No URLs provided — placeholders until real profiles are added.
+  // No URLs provided — filtered out of the footer until real profiles exist.
   { label: "LinkedIn", href: "#" },
   { label: "X", href: "#" },
-];
+].filter((social) => social.href !== "#");

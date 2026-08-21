@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import type { NavItem } from "@/lib/site";
-import { NavLink } from "@/components/NavLink";
+import { NavLinks } from "@/components/NavLinks";
 
 type MobileNavProps = {
   items: NavItem[];
@@ -36,7 +36,7 @@ export function MobileNav({ items }: MobileNavProps) {
   }, [open, close]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -63,7 +63,7 @@ export function MobileNav({ items }: MobileNavProps) {
           >
             {/* Drawer header mirrors the fixed page header */}
             <div className="flex items-center justify-between px-6 py-5">
-              <span className="text-xs font-medium uppercase tracking-[2px] text-muted">
+              <span className="text-xs font-medium uppercase tracking-[0.125rem] text-muted">
                 Menu
               </span>
               <button
@@ -77,16 +77,13 @@ export function MobileNav({ items }: MobileNavProps) {
             </div>
 
             <nav aria-label="Mobile" className="px-8 pt-[12vh]">
-              <ul className="flex flex-col gap-2">
-                {items.map((item) => (
-                  <li key={item.label}>
-                    {/* min-h-12 = 48px minimum touch target */}
-                    <div className="flex min-h-12 items-center">
-                      <NavLink item={item} onClick={close} />
-                    </div>
-                  </li>
-                ))}
-              </ul>
+              {/* Scroll-spy driven; min-h-12 = 48px minimum touch target */}
+              <NavLinks
+                items={items}
+                ulClassName="flex flex-col gap-2"
+                liClassName="flex min-h-12 items-center"
+                onNavigate={close}
+              />
             </nav>
           </motion.div>
         )}

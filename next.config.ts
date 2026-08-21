@@ -6,6 +6,10 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: import.meta.dirname,
   },
+
+  // Hide the floating dev-tools "N" button so it never overlaps content.
+  // Errors still surface normally; production is unaffected either way.
+  devIndicators: false,
 };
 
 export default nextConfig;

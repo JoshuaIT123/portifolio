@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500" role="img" aria-label="Project preview placeholder">
+  <rect width="800" height="500" fill="#161616"/>
+  <g fill="#d4ff3d">
+    <rect x="220" y="280" width="52" height="90" rx="6" fill-opacity="0.55"/>
+    <rect x="292" y="220" width="52" height="150" rx="6" fill-opacity="0.75"/>
+    <rect x="364" y="160" width="52" height="210" />
+    <rect x="436" y="240" width="52" height="130" rx="6" fill-opacity="0.7"/>
+    <rect x="508" y="190" width="52" height="180" rx="6" fill-opacity="0.85"/>
+  </g>
+  <g stroke="#9a9a9a" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="1 10" stroke-linecap="round">
+    <path d="M200 140 L600 140"/>
+  </g>
+</svg>

@@ -9,7 +9,9 @@ type NavLinkProps = {
 
 /**
  * Single nav link shared by the desktop sidebar and the mobile drawer.
- * Active state is driven purely by props (wire up scroll-spy later).
+ * One active indicator only: the small lime dash before the label — no
+ * vertical bar. The dash slot keeps every label left-aligned to the same
+ * edge as the sidebar's photo and header text.
  */
 export function NavLink({ item, onClick }: NavLinkProps) {
   return (
@@ -18,19 +20,20 @@ export function NavLink({ item, onClick }: NavLinkProps) {
       onClick={onClick}
       aria-current={item.active ? "page" : undefined}
       className={`
-        group flex items-center gap-3 border-l-2 py-1 pl-4 text-sm transition-colors duration-200
+        group flex items-center gap-3 py-1 text-[1.0625rem] transition-colors duration-200
         ${
           item.active
-            ? "border-accent font-medium text-primary"
+            ? /* active: bold lime label + solid lime dash */
+              "font-bold text-accent"
             : /* primary/70 ≈ #b3b3b3 on the dark bg — ~9.4:1 contrast (WCAG AAA) */
-              "border-transparent text-primary/70 hover:text-primary"
+              "font-medium text-primary/70 hover:text-primary"
         }
       `}
     >
-      {/* Small dash indicator shown only on the active item */}
+      {/* Lime dash — slot reserves its width so all labels line up */}
       <span
         aria-hidden="true"
-        className={`h-px w-4 bg-accent transition-opacity duration-200 ${
+        className={`h-[2px] w-4 shrink-0 rounded-full bg-accent transition-opacity duration-200 ${
           item.active ? "opacity-100" : "opacity-0"
         }`}
       />

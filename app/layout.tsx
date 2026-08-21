@@ -2,10 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-import { Logo } from "@/components/Logo";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
-import { SidebarNav } from "@/components/SidebarNav";
 import { navItems, siteConfig } from "@/lib/site";
 
 // Self-hosted via next/font: zero layout shift, no external requests.
@@ -55,23 +55,33 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
     >
       <body className="min-h-dvh bg-bg font-sans text-primary">
-        {/* <header> holds the fixed logo (top-left) + mobile hamburger (top-right) */}
-        <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between px-6 py-5 md:px-10">
-          <Logo />
+        {/* Apply the stored theme before first paint to avoid a flash */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){}",
+          }}
+        />
+        {/* Full-height identity + nav sidebar (desktop); drawer below lg */}
+        <Sidebar items={navItems} />
+
+        {/* Slim top bar: theme toggle (always) + hamburger (below lg) */}
+        <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-end gap-2 px-6 py-5">
+          <ThemeToggle />
           <MobileNav items={navItems} />
         </header>
 
-        {/* Desktop-only vertical nav; collapses into MobileNav below md */}
-        <SidebarNav items={navItems} />
-
-        {/* Content column: offset by the 160px sidebar on desktop */}
-        <main className="relative md:pl-40">{children}</main>
-
-        {/* Footer shares the content column offset */}
-        <div className="md:pl-40">
+        {/* Content column: independent scroll container on lg+, with a thin
+            custom scrollbar; smooth-scrolls to section anchors */}
+        <div
+          id="content-scroll"
+          className="thin-scrollbar scroll-smooth lg:ml-[17.5rem] lg:h-dvh lg:overflow-y-auto"
+        >
+          <main className="relative">{children}</main>
           <Footer />
         </div>
       </body>

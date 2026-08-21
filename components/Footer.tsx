@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="border-t border-card-border px-6 py-8 md:px-12 lg:pr-20">
       <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[2px] text-primary">
+          <p className="text-xs font-medium uppercase tracking-[0.125rem] text-primary">
             {siteConfig.name}
           </p>
           <p className="mt-1 text-xs text-muted">{siteConfig.role}</p>

@@ -5,15 +5,15 @@ type AvatarProps = {
   alt: string;
   /** Hint for the image loader (intrinsic px size) */
   size?: number;
-  /** Sizing classes, e.g. "size-64 md:size-80" */
+  /** Sizing classes, e.g. "size-[4.75rem] size-20" */
   className?: string;
   /** Set on above-the-fold media (hero) so it loads eagerly */
   priority?: boolean;
 };
 
 /**
- * Circular profile media container — ready for a high-resolution headshot
- * (or any visual) via `src`. Includes the subtle lime gradient glow ring.
+ * Circular black-and-white profile photo — plain per the reference:
+ * no border, ring or glow; sits directly on the page background.
  */
 export function Avatar({
   src,
@@ -24,26 +24,13 @@ export function Avatar({
 }: AvatarProps) {
   return (
     <span className={`relative inline-block shrink-0 ${className}`}>
-      {/* Soft lime gradient glow behind the media */}
-      <span
-        aria-hidden="true"
-        className="absolute inset-0 rounded-full bg-gradient-to-tr from-accent/25 to-transparent blur-xl"
-      />
-      {/* Media container */}
-      <span className="relative block size-full overflow-hidden rounded-full border border-white/15">
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          sizes={`${size}px`}
-          priority={priority}
-          className="rounded-full object-cover"
-        />
-      </span>
-      {/* Thin accent ring */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 rounded-full border border-accent/40"
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes={`${size}px`}
+        priority={priority}
+        className="rounded-full object-cover grayscale"
       />
     </span>
   );

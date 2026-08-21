@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Global scale: 75% root font-size. All rem-based Tailwind utilities
+ * (text, spacing, radii) shrink proportionally — like 75% browser zoom,
+ * without CSS zoom. px values in markup are avoided on purpose. */
+html {
+  font-size: 75%;
+}
+
 /* ---------------------------------------------------------------------------
  * Design tokens
  * Single source of truth for colors, radii, and fonts.
@@ -15,12 +22,12 @@
  *   --radius-card   -> rounded-card (20px)
  * ------------------------------------------------------------------------- */
 :root {
-  --bg: #0a0a0a;
-  --bg-secondary: #111111;
+  --bg: #121212;
+  --bg-secondary: #181818;
   --accent: #d4ff3d;
   --text-primary: #ffffff;
-  --text-muted: #9a9a9a;
-  --card-bg: #161616;
+  --text-muted: #a1a1aa;
+  --card-bg: #1b1b1b;
   --card-border: rgba(255, 255, 255, 0.08);
 }
 
@@ -39,7 +46,7 @@
     sans-serif;
 
   --radius-pill: 999px;
-  --radius-card: 20px;
+  --radius-card: 1.25rem;
 }
 
 body {
@@ -47,29 +54,54 @@ body {
   color: var(--text-primary);
 }
 
-/* Diagonal lime radial glow anchored top-left (~17% opacity), fixed so it
- * stays put while scrolling. Purely decorative. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  background: radial-gradient(
-    ellipse 75% 55% at -8% -12%,
-    color-mix(in srgb, var(--accent) 17%, transparent),
-    transparent 62%
-  );
-}
-
 /* Accessible focus ring: visible lime outline for keyboard users only */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 2px;
+  border-radius: 0.125rem;
 }
 
 ::selection {
   background-color: var(--accent);
   color: var(--bg);
+}
+
+/* ---------------------------------------------------------------------------
+ * Light theme — token overrides applied when ThemeToggle adds `.light` to
+ * <html>. Accent is darkened so it keeps readable contrast on white.
+ * ------------------------------------------------------------------------- */
+html.light {
+  --bg: #f7f7f5;
+  --bg-secondary: #efefec;
+  --accent: #84cc16;
+  --text-primary: #18181b;
+  --text-muted: #55555c;
+  --card-bg: #ffffff;
+  --card-border: rgba(0, 0, 0, 0.08);
+}
+
+/* Thin, minimal scrollbar for the independently-scrolling content column */
+.thin-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--card-border) transparent;
+}
+.thin-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.thin-scrollbar::-webkit-scrollbar-thumb {
+  background: var(--card-border);
+  border-radius: 999px;
+}
+.thin-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Tech marquee strip — duplicated list translates by half its width */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
