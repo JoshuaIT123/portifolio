@@ -21,8 +21,9 @@ export function NavLink({ item, onClick }: NavLinkProps) {
         group flex items-center gap-3 border-l-2 py-1 pl-4 text-sm transition-colors duration-200
         ${
           item.active
-            ? "border-accent text-primary"
-            : "border-transparent text-muted hover:text-primary"
+            ? "border-accent font-medium text-primary"
+            : /* primary/70 ≈ #b3b3b3 on the dark bg — ~9.4:1 contrast (WCAG AAA) */
+              "border-transparent text-primary/70 hover:text-primary"
         }
       `}
     >

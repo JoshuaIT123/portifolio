@@ -6,15 +6,21 @@
 
 export const siteConfig = {
   /** Wordmark shown top-left + footer. Rendered uppercase via CSS. */
-  name: "Arsene Mucyuneje",
-  role: "Software Developer",
+  name: "Arsene Mucyuneje Hirwa",
+  role: "Software Engineer & IT Consultant",
   location: "Rwanda",
   /** Canonical site URL — used by metadata, sitemap and robots. */
   url: "https://mucyuneje.space",
-  title: "Arsene Mucyuneje — Software Developer",
+  title: "Arsene Mucyuneje Hirwa — Software Engineer & IT Consultant",
   description:
     "I build digital products, web applications & AI systems that solve real problems.",
   githubUrl: "https://github.com/mucyuneje",
+};
+
+/** Profile photo — drop your picture in /public/images and update the path. */
+export const profile = {
+  avatar: "/images/profile-placeholder.svg",
+  avatarAlt: "Portrait of Arsene Mucyuneje Hirwa",
 };
 
 export type NavItem = {
@@ -35,7 +41,9 @@ export const navItems: NavItem[] = [
 ];
 
 export const heroContent = {
-  badge: "Arsene — Software Developer",
+  /** Rendered once as the hero brand block (uppercase via CSS). */
+  fullName: "Arsene Mucyuneje Hirwa",
+  role: "Software Engineer & IT Consultant",
   headline:
     "I build digital products, web applications & AI systems that solve real problems.",
   primaryCta: { label: "View my work", href: "#work" },
@@ -45,7 +53,8 @@ export const heroContent = {
 export type Project = {
   title: string;
   description: string;
-  tech: string;
+  /** Tech names — resolved to icons via lib/tech-icons.ts */
+  tech: string[];
   /** No live URLs provided yet — projects link to GitHub. */
   href: string;
 };
@@ -55,28 +64,28 @@ export const projects: Project[] = [
     title: "AI-Powered Talent Screening",
     description:
       "AI-powered software designed to help organizations screen and evaluate candidates more efficiently.",
-    tech: "AI · Python · Web Development",
+    tech: ["AI", "Python", "Web Development"],
     href: siteConfig.githubUrl,
   },
   {
     title: "School Asset Management",
     description:
       "A digital system for managing organizational assets, employees, assignments and asset history.",
-    tech: "Next.js · Node.js · MySQL",
+    tech: ["Next.js", "Node.js", "MySQL"],
     href: siteConfig.githubUrl,
   },
   {
     title: "RebaBus",
     description:
       "A real-time public transportation tracking platform designed to make bus movement easier to monitor.",
-    tech: "React · Node.js · Real-time Systems",
+    tech: ["React", "Node.js", "Real-time Systems"],
     href: siteConfig.githubUrl,
   },
   {
     title: "AgriMarketAI",
     description:
       "An AI-powered agricultural technology project focused on using intelligent systems to solve real-world farming challenges.",
-    tech: "Python · AI · Machine Learning",
+    tech: ["Python", "AI", "Machine Learning"],
     href: siteConfig.githubUrl,
   },
 ];
@@ -107,11 +116,11 @@ export const services = [
 ];
 
 export const tools = [
-  { category: "Frontend", items: "React · Next.js · Vue · Tailwind CSS" },
-  { category: "Backend", items: "Node.js · Express · PHP" },
-  { category: "Data", items: "MySQL · MongoDB" },
-  { category: "AI", items: "Python · Machine Learning" },
-  { category: "Tools", items: "Git · GitHub · Docker" },
+  { category: "Frontend", items: ["React", "Next.js", "Vue", "Tailwind CSS"] },
+  { category: "Backend", items: ["Node.js", "Express", "PHP"] },
+  { category: "Data", items: ["MySQL", "MongoDB"] },
+  { category: "AI", items: ["Python", "Machine Learning"] },
+  { category: "Tools", items: ["Git", "GitHub", "Docker"] },
 ];
 
 export const experience = [

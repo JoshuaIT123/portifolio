@@ -1,9 +1,10 @@
 import { ArrowUpRight } from "lucide-react";
+import { TechList } from "@/components/TechList";
 
 type ProjectCardProps = {
   title: string;
   description: string;
-  tech: string;
+  tech: string[];
   href: string;
 };
 
@@ -28,9 +29,7 @@ export function ProjectCard({ title, description, tech, href }: ProjectCardProps
         {title}
       </h3>
       <p className="mt-3 text-sm leading-relaxed text-muted">{description}</p>
-      <p className="mt-auto pt-6 text-xs uppercase tracking-[0.14em] text-muted">
-        {tech}
-      </p>
+      <TechList items={tech} size="sm" className="mt-auto pt-6" />
     </article>
   );
 }

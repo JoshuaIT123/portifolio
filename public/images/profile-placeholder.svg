@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200" role="img" aria-label="Profile photo placeholder">
+  <defs>
+    <linearGradient id="glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d4ff3d" stop-opacity="0.16"/>
+      <stop offset="55%" stop-color="#d4ff3d" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="200" fill="#161616"/>
+  <rect width="200" height="200" fill="url(#glow)"/>
+  <circle cx="100" cy="76" r="27" fill="none" stroke="#9a9a9a" stroke-opacity="0.55" stroke-width="3"/>
+  <path d="M46 158 Q100 106 154 158" fill="none" stroke="#9a9a9a" stroke-opacity="0.55" stroke-width="3" stroke-linecap="round"/>
+</svg>

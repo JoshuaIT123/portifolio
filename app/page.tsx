@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
+import { Avatar } from "@/components/Avatar";
 import { FadeUp } from "@/components/FadeUp";
 import { Hero } from "@/components/Hero";
 import { PillButton } from "@/components/PillButton";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
+import { TechList } from "@/components/TechList";
 import { WorkPreviewCard } from "@/components/WorkPreviewCard";
 import {
   aboutContent,
@@ -13,6 +15,7 @@ import {
   finalCta,
   githubSection,
   heroContent,
+  profile,
   projects,
   services,
   siteConfig,
@@ -33,10 +36,13 @@ export default function HomePage() {
       {/* Intro / hero — the page's single <h1> lives inside */}
       <section
         id="intro"
-        className="scroll-mt-24 px-6 pb-24 pt-32 md:px-12 md:pt-[24vh] lg:pr-20"
+        className="scroll-mt-24 px-6 pb-24 pt-28 md:px-12 md:pt-[24vh] lg:pr-20"
       >
         <Hero
-          badgeText={heroContent.badge}
+          avatarSrc={profile.avatar}
+          avatarAlt={profile.avatarAlt}
+          fullName={heroContent.fullName}
+          role={heroContent.role}
           headline={heroContent.headline}
           primaryCta={heroContent.primaryCta}
           secondaryCta={heroContent.secondaryCta}
@@ -78,9 +84,16 @@ export default function HomePage() {
         </FadeUp>
         <div className="mt-8 gap-12 md:grid md:grid-cols-[1fr_220px]">
           <FadeUp delay={0.08}>
-            <p className="max-w-[520px] text-lg leading-relaxed text-primary">
-              {aboutContent.intro}
-            </p>
+            <div className="flex items-start gap-5">
+              <Avatar
+                src={profile.avatar}
+                alt={profile.avatarAlt}
+                className="size-18"
+              />
+              <p className="max-w-[520px] text-lg leading-relaxed text-primary">
+                {aboutContent.intro}
+              </p>
+            </div>
           </FadeUp>
           <FadeUp delay={0.16}>
             <dl className="mt-10 flex flex-col gap-6 md:mt-1">
@@ -136,7 +149,7 @@ export default function HomePage() {
                 </span>
               </FadeUp>
               <FadeUp delay={0.05 + i * 0.05}>
-                <span className="block text-sm text-primary">{tool.items}</span>
+                <TechList items={tool.items} />
               </FadeUp>
             </li>
           ))}

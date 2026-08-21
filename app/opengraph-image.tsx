@@ -46,7 +46,7 @@ export default function OpengraphImage() {
               background: "#d4ff3d",
             }}
           />
-          Software Developer — Rwanda
+          Software Engineer &amp; IT Consultant — Rwanda
         </div>
         <div
           style={{
