@@ -118,7 +118,6 @@ export default function HomePage() {
                 tech={project.tech}
                 demoUrl={project.demoUrl}
                 sourceUrl={project.sourceUrl}
-                caseStudy={project.caseStudy}
                 gallery={project.gallery ?? []}
               />
             </FadeUp>

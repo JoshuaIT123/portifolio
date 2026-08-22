@@ -87,18 +87,11 @@ export const heroContent = {
   headlineShort: "I build web applications, digital products & AI systems.",
 };
 
-/** Structured mini case study — rendered on the project card in place of
- *  the one-line description. Keep each part to one sentence. */
-export type ProjectCaseStudy = {
-  problem: string;
-  approach: string;
-  outcome: string;
-};
-
 export type Project = {
   title: string;
+  /** Concise card summary — kept to ~2 sentences; clamped to 3 lines in UI */
   description: string;
-  /** 16:10 preview image — swap in real screenshots when available */
+  /** Wide preview image — swap in real screenshots when available */
   image: string;
   /** Tech names — resolved to icons via lib/tech-icons.ts */
   tech: string[];
@@ -106,8 +99,6 @@ export type Project = {
   demoUrl?: string;
   /** Public repository — rendered as a secondary "Source Code" link */
   sourceUrl?: string;
-  /** Problem -> Approach -> Outcome block (replaces the one-liner) */
-  caseStudy?: ProjectCaseStudy;
   /** Extra screenshots/GIFs — drop files in /public/images, list paths here.
    *  Rendered as a thumbnail strip under the preview by ProjectGallery. */
   gallery?: string[];
@@ -117,20 +108,12 @@ export type Project = {
 export const projects: Project[] = [
   {
     title: "Echelon",
+    // TODO: add metric here (e.g. screening time saved per hire)
     description:
-      "AI-powered software designed to help organizations screen and evaluate candidates more efficiently.",
+      "Screening high volumes of applications by hand is slow and inconsistent — Echelon structures hiring with Gemini-powered AI résumé processing and candidate evaluation, so shortlists come together faster and against one consistent bar.",
     image: "/images/Echlon-Work1.png",
     tech: ["AI", "Python", "Web Development"],
     demoUrl: "https://echelon-theta.vercel.app/",
-    caseStudy: {
-      problem:
-        "Screening high volumes of applications by hand is slow and inconsistent, so strong candidates slip through.",
-      approach:
-        "Echelon structures hiring decisions with AI-assisted screening — Gemini-powered résumé processing and candidate evaluation.",
-      // TODO: add metric here (e.g. screening time saved per hire)
-      outcome:
-        "Shortlists come together faster and evaluate candidates against the same bar.",
-    },
     // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
     // and list their paths here to activate the gallery strip.
   },
@@ -144,22 +127,13 @@ export const projects: Project[] = [
   },
   {
     title: "RebaBus",
+    // TODO: add metric here (e.g. vehicles tracked, requests handled)
     description:
-      "A real-time public transportation tracking platform designed to make bus movement easier to monitor.",
+      "Riders and operators have no live view of bus movement — RebaBus streams vehicle positions over WebSockets from a Node.js tracking backend, making end-to-end network monitoring possible in real time.",
     image: "/images/work-3.svg",
     tech: ["React", "Node.js", "Real-time Systems"],
     // TODO: add repo/demo URL when available
-    caseStudy: {
-      problem:
-        "Riders and operators have no live view of where buses actually are, so planning runs on guesswork.",
-      approach:
-        "RebaBus streams vehicle positions in real time over WebSockets from a Node.js tracking backend.",
-      // TODO: add metric here (e.g. vehicles tracked, requests handled)
-      outcome:
-        "Bus movement across the network can be monitored live, end to end.",
-    },
     // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
-    // and list their paths here to activate the gallery strip.
   },
   {
     title: "AgriMarketAI",

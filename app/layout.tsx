@@ -3,10 +3,10 @@ import Link from "next/link";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { JsonLd } from "@/components/JsonLd";
 import { buildJsonLd } from "@/lib/json-ld";
 import { navItems, heroContent, siteConfig, seoKeywords } from "@/lib/site";
@@ -97,32 +97,38 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               "try{if(localStorage.theme==='light')document.documentElement.classList.add('light')}catch(e){}",
           }}
         />
-        {/* Full-height identity + nav sidebar (desktop); drawer below lg */}
-        <Sidebar items={navItems} />
+        {/* Centered application shell — hard 1600px cap so the layout stays
+            grounded and never stretches endlessly on ultra-wide monitors.
+            Sidebar participates in flex flow (sticky, not fixed) so the
+            whole shell — identity rail included — centers as one unit. */}
+        <div className="mx-auto flex w-full max-w-[1600px]">
+          {/* Full-height identity + nav sidebar (desktop); drawer below lg */}
+          <Sidebar items={navItems} />
 
-        {/* Top bar: name/wordmark on the left (mobile/tablet — the sidebar
-            carries identity on lg+), theme toggle + hamburger on the right */}
-        <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-6 py-5">
-          <Link
-            href="/#intro"
-            className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent lg:hidden"
+          {/* Top bar (below lg only — the sidebar carries identity and the
+              theme toggle on desktop): name left, theme + menu right */}
+          <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-6 py-5 lg:hidden">
+            <Link
+              href="/#intro"
+              className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent"
+            >
+              {heroContent.identity}
+            </Link>
+            <div className="flex items-center gap-2">
+              <ThemeToggle />
+              <MobileNav items={navItems} />
+            </div>
+          </header>
+
+          {/* Content column: independent scroll container on lg+, with a thin
+              custom scrollbar; smooth-scrolls to section anchors */}
+          <div
+            id="content-scroll"
+            className="thin-scrollbar min-w-0 flex-1 scroll-smooth lg:h-dvh lg:overflow-y-auto"
           >
-            {heroContent.identity}
-          </Link>
-          <div className="flex items-center gap-2">
-            <ThemeToggle />
-            <MobileNav items={navItems} />
+            <main className="relative">{children}</main>
+            <Footer />
           </div>
-        </header>
-
-        {/* Content column: independent scroll container on lg+, with a thin
-            custom scrollbar; smooth-scrolls to section anchors */}
-        <div
-          id="content-scroll"
-          className="thin-scrollbar scroll-smooth lg:ml-[17.5rem] lg:h-dvh lg:overflow-y-auto"
-        >
-          <main className="relative">{children}</main>
-          <Footer />
         </div>
       </body>
     </html>
