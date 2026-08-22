@@ -21,7 +21,7 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0a0a0a",
+          background: "#0f0f11",
           // Diagonal lime glow, echoing the site background
           backgroundImage:
             "linear-gradient(135deg, rgba(212,255,61,0.18) 0%, rgba(212,255,61,0) 45%)",

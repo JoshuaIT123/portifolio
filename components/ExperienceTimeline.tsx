@@ -1,10 +1,14 @@
 import Image from "next/image";
 
 import { FadeUp } from "@/components/FadeUp";
+import { SectionHeading } from "@/components/SectionHeading";
 import type { ExperienceEntry } from "@/lib/site";
 
 type ExperienceTimelineProps = {
   entries: ExperienceEntry[];
+  /** Lighter leadership/program entries — rendered as a compact sub-list
+   *  below the main axis so visual weight matches content depth */
+  leadership?: ExperienceEntry[];
 };
 
 function initials(org: string): string {
@@ -23,7 +27,7 @@ function initials(org: string): string {
  * (initials fallback when no logo file exists) and a bulleted list of key
  * achievements under the description.
  */
-export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
+export function ExperienceTimeline({ entries, leadership }: ExperienceTimelineProps) {
   return (
     <div className="mt-12 border-l-2 border-card-border pl-8">
       {entries.map((entry, i) => (
@@ -90,6 +94,72 @@ export function ExperienceTimeline({ entries }: ExperienceTimelineProps) {
           </FadeUp>
         </div>
       ))}
+
+      {/* Leadership & programs — compact rows, no timeline axis: smaller
+          logos, inline role/org, one-line description. Deliberately lighter
+          than the dated, bulleted entries above. */}
+      {leadership && leadership.length > 0 && (
+        <div className="mt-14">
+          <FadeUp>
+            <SectionHeading as="p">Leadership &amp; Programs</SectionHeading>
+          </FadeUp>
+          <ul className="mt-6 flex flex-col gap-6">
+            {leadership.map((entry, i) => (
+              <li key={entry.org}>
+                <FadeUp delay={i * 0.05}>
+                  <div className="flex items-start gap-4">
+                    <span className="flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-full border border-card-border bg-bg">
+                      {entry.logo ? (
+                        <Image
+                          src={entry.logo}
+                          alt=""
+                          width={36}
+                          height={36}
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        <span
+                          aria-hidden="true"
+                          className="font-heading text-[0.625rem] font-bold text-accent"
+                        >
+                          {initials(entry.org)}
+                        </span>
+                      )}
+                    </span>
+                    <div>
+                      <p className="text-sm font-semibold leading-tight text-primary">
+                        {entry.role}
+                        <span className="font-normal text-muted">
+                          {" "}
+                          · {entry.org}
+                        </span>
+                      </p>
+                      {entry.tags && entry.tags.length > 0 && (
+                        <ul
+                          className="mt-2 flex flex-wrap gap-1.5"
+                          aria-label="Tags"
+                        >
+                          {entry.tags.map((tag) => (
+                            <li
+                              key={tag}
+                              className="rounded-pill bg-card px-2.5 py-0.5 text-[0.625rem] font-semibold uppercase tracking-wide text-accent"
+                            >
+                              {tag}
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                      <p className="mt-1.5 max-w-[34rem] text-sm leading-relaxed text-muted">
+                        {entry.description}
+                      </p>
+                    </div>
+                  </div>
+                </FadeUp>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

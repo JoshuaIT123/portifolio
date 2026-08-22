@@ -25,15 +25,21 @@ import {
   finalCta,
   githubSection,
   heroContent,
+  highlightedTech,
+  leadershipPrograms,
   projects,
   siteConfig,
   tools,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  // absolute: bypasses the layout's "%s — Arsene Mucyuneje" template
+  // absolute: pins the full brand title (template in layout.tsx applies to
+  // child segments only, never this same-segment page)
   title: { absolute: siteConfig.title },
   description: siteConfig.description,
+  alternates: {
+    canonical: "/",
+  },
 };
 
 export default function HomePage() {
@@ -56,9 +62,10 @@ export default function HomePage() {
       </section>
 
       {/* Mobile: static pills of the strongest technologies — clean, no
-          cut-off motion; the animated marquee takes over on md+ */}
+          cut-off motion; the animated marquee takes over on md+.
+          Items come from highlightedTech in lib/site.ts (single source). */}
       <div className="flex flex-wrap items-center justify-center gap-2 px-6 md:hidden">
-        {["React", "Next.js", "Node.js", "Python"].map((name) => {
+        {highlightedTech.map((name) => {
           const Icon = getTechIcon(name);
           return (
             <span
@@ -109,7 +116,10 @@ export default function HomePage() {
                 description={project.description}
                 image={project.image}
                 tech={project.tech}
-                href={project.href}
+                demoUrl={project.demoUrl}
+                sourceUrl={project.sourceUrl}
+                caseStudy={project.caseStudy}
+                gallery={project.gallery ?? []}
               />
             </FadeUp>
           ))}
@@ -188,7 +198,10 @@ export default function HomePage() {
             Roles, teams and programs that shaped how I work.
           </p>
         </FadeUp>
-        <ExperienceTimeline entries={experience} />
+        <ExperienceTimeline
+          entries={experience}
+          leadership={leadershipPrograms}
+        />
       </section>
 
       {/* Achievements & Recognition — evidence behind the expertise */}

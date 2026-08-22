@@ -8,24 +8,47 @@ import type { LucideIcon } from "lucide-react";
 import { Code2, Handshake, Layers, MapPin } from "lucide-react";
 
 export const siteConfig = {
-  /** Wordmark shown top-left + footer. Rendered uppercase via CSS. */
-  name: "Arsene Mucyuneje Hirwa",
+  /** Canonical brand/entity name — used in titles, OG tags, footer and
+   *  JSON-LD so every surface agrees on one identity (helps Sitelinks). */
+  name: "Mucyuneje Hirwa Arsene",
   role: "Software Engineer & IT Consultant",
   location: "Rwanda",
   /** Canonical site URL — used by metadata, sitemap and robots. */
   url: "https://mucyuneje.space",
-  title: "Arsene Mucyuneje Hirwa — Software Engineer & IT Consultant",
+  /** Default <title> for the homepage (page.tsx pins it absolutely). */
+  title: "Mucyuneje Hirwa Arsene | Software Developer",
   description:
-    "I build digital products, web applications & AI systems that solve real problems.",
+    "Software developer & IT consultant building full-stack web applications, APIs and AI systems that solve real problems for organizations.",
   githubUrl: "https://github.com/mucyuneje",
   /** Hero pill + contact section — REPLACE with your real profiles */
-  linkedinUrl: "https://www.linkedin.com/in/arsene-mucyuneje",
+  linkedinUrl: "https://www.linkedin.com/in/mucyuneje",
   email: "hello@mucyuneje.space",
   /** WhatsApp + Instagram — secondary channels, shown in the contact
    *  section only (the hero keeps GitHub / LinkedIn / Email) */
   whatsappUrl: "https://wa.me/250784222615",
   instagramUrl: "https://instagram.com/mucyuneje",
 };
+
+/** Targeted industry terms — emitted as meta keywords and reused as
+ *  `knowsAbout` in the Person JSON-LD entity. */
+export const seoKeywords = [
+  "software developer",
+  "full-stack developer",
+  "software engineering",
+  "web application development",
+  "API development",
+  "digital solutions",
+  "IT consultant",
+  "React developer",
+  "Next.js developer",
+  "Node.js backend",
+  "AI systems",
+  "machine learning",
+  "database design",
+  "freelance developer",
+  "Rwanda software developer",
+  "Kigali tech",
+];
 
 /** Profile photo — drop your picture in /public/images and update the path. */
 export const profile = {
@@ -64,6 +87,14 @@ export const heroContent = {
   headlineShort: "I build web applications, digital products & AI systems.",
 };
 
+/** Structured mini case study — rendered on the project card in place of
+ *  the one-line description. Keep each part to one sentence. */
+export type ProjectCaseStudy = {
+  problem: string;
+  approach: string;
+  outcome: string;
+};
+
 export type Project = {
   title: string;
   description: string;
@@ -71,8 +102,15 @@ export type Project = {
   image: string;
   /** Tech names — resolved to icons via lib/tech-icons.ts */
   tech: string[];
-  /** No live URLs provided yet — projects link to GitHub. */
-  href: string;
+  /** Live deployment — rendered as the card's primary "Live Demo" link */
+  demoUrl?: string;
+  /** Public repository — rendered as a secondary "Source Code" link */
+  sourceUrl?: string;
+  /** Problem -> Approach -> Outcome block (replaces the one-liner) */
+  caseStudy?: ProjectCaseStudy;
+  /** Extra screenshots/GIFs — drop files in /public/images, list paths here.
+   *  Rendered as a thumbnail strip under the preview by ProjectGallery. */
+  gallery?: string[];
 };
 
 /** The Selected Work section renders the first three as a curated preview. */
@@ -83,7 +121,18 @@ export const projects: Project[] = [
       "AI-powered software designed to help organizations screen and evaluate candidates more efficiently.",
     image: "/images/Echlon-Work1.png",
     tech: ["AI", "Python", "Web Development"],
-    href: siteConfig.githubUrl,
+    demoUrl: "https://echelon-theta.vercel.app/",
+    caseStudy: {
+      problem:
+        "Screening high volumes of applications by hand is slow and inconsistent, so strong candidates slip through.",
+      approach:
+        "Echelon structures hiring decisions with AI-assisted screening — Gemini-powered résumé processing and candidate evaluation.",
+      // TODO: add metric here (e.g. screening time saved per hire)
+      outcome:
+        "Shortlists come together faster and evaluate candidates against the same bar.",
+    },
+    // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
+    // and list their paths here to activate the gallery strip.
   },
   {
     title: "School Asset Management",
@@ -91,7 +140,7 @@ export const projects: Project[] = [
       "A digital system for managing organizational assets, employees, assignments and asset history.",
     image: "/images/RebaBus-Work2.png",
     tech: ["Next.js", "Node.js", "MySQL"],
-    href: siteConfig.githubUrl,
+    // TODO: add repo/demo URL when available
   },
   {
     title: "RebaBus",
@@ -99,7 +148,18 @@ export const projects: Project[] = [
       "A real-time public transportation tracking platform designed to make bus movement easier to monitor.",
     image: "/images/work-3.svg",
     tech: ["React", "Node.js", "Real-time Systems"],
-    href: siteConfig.githubUrl,
+    // TODO: add repo/demo URL when available
+    caseStudy: {
+      problem:
+        "Riders and operators have no live view of where buses actually are, so planning runs on guesswork.",
+      approach:
+        "RebaBus streams vehicle positions in real time over WebSockets from a Node.js tracking backend.",
+      // TODO: add metric here (e.g. vehicles tracked, requests handled)
+      outcome:
+        "Bus movement across the network can be monitored live, end to end.",
+    },
+    // TODO: add 2-3 real screenshots (or a short GIF) in /public/images
+    // and list their paths here to activate the gallery strip.
   },
   {
     title: "AgriMarketAI",
@@ -107,7 +167,7 @@ export const projects: Project[] = [
       "An AI-powered agricultural technology project focused on using intelligent systems to solve real-world farming challenges.",
     image: "/images/work-1.svg",
     tech: ["Python", "AI", "Machine Learning"],
-    href: siteConfig.githubUrl,
+    // TODO: add repo/demo URL when available
   },
 ];
 
@@ -134,6 +194,11 @@ export const tools = [
   { category: "Tools", items: ["Git", "GitHub", "Docker"] },
 ];
 
+/** The four technologies highlighted in the hero strip (mobile). Single
+ *  curated subset — edit here, not in the page markup. The full marquee
+ *  and the Tools section both derive from `tools` above. */
+export const highlightedTech = ["React", "Next.js", "Node.js", "Python"];
+
 export type ExperienceEntry = {
   org: string;
   role: string;
@@ -148,6 +213,9 @@ export type ExperienceEntry = {
   logo?: string;
 };
 
+/** Main professional timeline — roles with dates and concrete achievements.
+ *  Lighter leadership/program entries live in `leadershipPrograms` so the
+ *  visual weight of each entry matches its actual content depth. */
 export const experience: ExperienceEntry[] = [
   {
     org: "UBWAMI TechHouse",
@@ -176,6 +244,12 @@ export const experience: ExperienceEntry[] = [
       "Assisted administrative teams with IT workflow optimizations and system diagnostics.",
     ],
   },
+];
+
+/** Leadership & programs — rendered as a compact sub-list under the main
+ *  timeline (no dates/bullets yet; promote entries by moving them up and
+ *  adding `date` + `responsibilities`). */
+export const leadershipPrograms: ExperienceEntry[] = [
   {
     org: "School Leadership",
     role: "Leadership & Coordination",
