@@ -22,12 +22,14 @@ html {
  *   --radius-card   -> rounded-card (20px)
  * ------------------------------------------------------------------------- */
 :root {
-  --bg: #121212;
-  --bg-secondary: #181818;
+  /* Deep obsidian charcoal — softer than pure black, easier on the eyes
+     on mobile OLED displays while keeping full contrast for text */
+  --bg: #0f0f11;
+  --bg-secondary: #17171a;
   --accent: #d4ff3d;
   --text-primary: #ffffff;
   --text-muted: #a1a1aa;
-  --card-bg: #1b1b1b;
+  --card-bg: #1a1a1e;
   --card-border: rgba(255, 255, 255, 0.08);
 }
 

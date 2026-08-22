@@ -12,7 +12,7 @@ export function TechMarquee() {
   const items = Array.from(new Set(tools.flatMap((tool) => tool.items)));
 
   return (
-    <div aria-hidden="true" className="relative mb-24 overflow-hidden">
+    <div aria-hidden="true" className="relative overflow-hidden">
       {/* Very subtle float — no pills/borders, soft edge fade via overlays
           plus mask-image where compositing supports it */}
       <div className="flex w-max animate-[marquee_36s_linear_infinite] items-center gap-14 py-5 text-primary/80 opacity-40 hover:[animation-play-state:paused]">

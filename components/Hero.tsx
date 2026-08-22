@@ -1,67 +1,66 @@
 import { Mail } from "lucide-react";
 import { SiGithub } from "react-icons/si";
-import { FaLinkedin, FaWhatsapp, FaInstagram } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa6";
 
 import { FadeUp } from "@/components/FadeUp";
+import { PillButton } from "@/components/PillButton";
+import { StatusBadge } from "@/components/StatusBadge";
 
 type HeroProps = {
-  /** Identity badge — only rendered below lg (sidebar shows the name there) */
-  identity: string;
-  /** Role + base line — rendered as a bold lime kicker */
+  /** Availability pill shown above the headline */
+  statusText: string;
+  /** Role + base line — rendered as a bold kicker */
   role: string;
   headline: string;
   /** Shorter headline variant shown below the md breakpoint */
   headlineShort: string;
-  /** Social/direct links — empty values render no icon (no dead links) */
+  /** Direct contact target for the primary CTA */
+  email: string;
+  /** Top professional channels — icon pills under the CTAs */
   githubUrl: string;
   linkedinUrl: string;
-  whatsappUrl: string;
-  instagramUrl: string;
-  email: string;
 };
 
 /**
- * Hero: (mobile/tablet) identity -> role kicker -> full-width headline ->
- * row of plain pill icon buttons (GitHub, LinkedIn, WhatsApp, Instagram,
- * Email). No imagery, no résumé button; the sidebar carries identity on
- * large screens.
+ * Hero: availability pill -> role kicker -> full-width headline ->
+ * primary CTA pair ("Get in Touch" / "View Work") -> subtle pills for the
+ * top three channels (GitHub, LinkedIn, Email). WhatsApp and Instagram
+ * live in the contact section instead. No imagery; the sidebar carries
+ * identity on large screens, the fixed header on smaller ones.
  * Server component; only the FadeUp wrappers are client-side.
  */
 export function Hero({
-  identity,
+  statusText,
   role,
   headline,
   headlineShort,
+  email,
   githubUrl,
   linkedinUrl,
-  whatsappUrl,
-  instagramUrl,
-  email,
 }: HeroProps) {
-  /* Plain pill-shaped icon buttons — no borders, subtle hover fill */
+  /* Subtle background pills — quiet by default, lift on hover */
   const socialLinkClass =
-    "rounded-full p-2.5 text-muted transition-colors duration-200 hover:bg-card/70 hover:text-primary";
+    "inline-flex items-center gap-2 rounded-full bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary";
   const socials = [
-    { label: "GitHub profile", href: githubUrl, external: true, Icon: SiGithub },
-    { label: "LinkedIn profile", href: linkedinUrl, external: true, Icon: FaLinkedin },
-    { label: "Chat on WhatsApp", href: whatsappUrl, external: true, Icon: FaWhatsapp },
-    { label: "Instagram profile", href: instagramUrl, external: true, Icon: FaInstagram },
-    { label: "Send an email", href: email ? `mailto:${email}` : "", external: false, Icon: Mail },
+    { label: "GitHub", href: githubUrl, Icon: SiGithub },
+    { label: "LinkedIn", href: linkedinUrl, Icon: FaLinkedin },
+    {
+      label: "Email",
+      href: email ? `mailto:${email}` : "",
+      Icon: Mail,
+    },
   ].filter((s) => s.href);
 
   return (
     <div>
-      {/* Identity badge — mobile/tablet only; lg+ has the sidebar name.
-          Sentence case, tracked out — a refined brand mark */}
+      {/* Availability pill — green pulsing dot builds immediate trust */}
       <FadeUp>
-        <p className="mb-3 block text-[0.8125rem] font-semibold tracking-[0.12em] text-muted lg:hidden">
-          {identity}
-        </p>
+        <StatusBadge text={statusText} />
       </FadeUp>
 
       {/* Role kicker — neutral muted gray; lime is reserved for the CTA */}
       <FadeUp delay={0.08}>
-        <p className="mb-4 block text-base font-bold uppercase tracking-wider text-muted sm:text-lg">
+        <p className="mb-4 mt-6 block text-base font-bold uppercase tracking-wider text-muted sm:text-lg">
           {role}
         </p>
       </FadeUp>
@@ -76,21 +75,35 @@ export function Hero({
         </h1>
       </FadeUp>
 
-      {/* Action row: social + direct-contact icon buttons.
-          Icons sit at 70% on mobile so they never compete with the h1 */}
+      {/* Primary CTA pair — visitors never have to scroll or guess */}
       <FadeUp delay={0.2}>
-        <div className="flex flex-wrap items-center gap-3 opacity-70 md:opacity-100">
-          {socials.map(({ label, href, external, Icon }) => (
+        <div className="flex flex-wrap items-center gap-3">
+          <PillButton
+            variant="primary"
+            href={email ? `mailto:${email}` : "/#contact"}
+          >
+            Get in Touch
+          </PillButton>
+          <PillButton variant="secondary" href="/#work">
+            View Work
+          </PillButton>
+        </div>
+      </FadeUp>
+
+      {/* Top three channels as subtle background pills */}
+      <FadeUp delay={0.26}>
+        <div className="mt-5 flex flex-wrap items-center gap-2.5">
+          {socials.map(({ label, href, Icon }) => (
             <a
               key={label}
               href={href}
-              {...(external
+              {...(href.startsWith("http")
                 ? { target: "_blank", rel: "noopener noreferrer" }
                 : {})}
-              aria-label={label}
               className={socialLinkClass}
             >
-              <Icon aria-hidden="true" className="size-7" />
+              <Icon aria-hidden="true" className="size-4" />
+              {label}
             </a>
           ))}
         </div>

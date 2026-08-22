@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ArrowRight, MapPin } from "lucide-react";
+import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
 import { AchievementStats } from "@/components/achievements/AchievementStats";
 import { AchievementsView } from "@/components/achievements/AchievementsView";
@@ -44,29 +45,27 @@ export default function HomePage() {
         className="scroll-mt-24 px-6 pb-24 pt-28 md:px-12 md:pb-16 md:pt-[16vh] lg:pr-20"
       >
         <Hero
-          identity={heroContent.identity}
+          statusText="Available for projects"
           role={heroContent.role}
           headline={heroContent.headline}
           headlineShort={heroContent.headlineShort}
+          email={siteConfig.email}
           githubUrl={siteConfig.githubUrl}
           linkedinUrl={siteConfig.linkedinUrl}
-          whatsappUrl={siteConfig.whatsappUrl}
-          instagramUrl={siteConfig.instagramUrl}
-          email={siteConfig.email}
         />
       </section>
 
-      {/* Mobile: static row of the strongest technologies — clean, no
+      {/* Mobile: static pills of the strongest technologies — clean, no
           cut-off motion; the animated marquee takes over on md+ */}
-      <div className="mb-24 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 px-6 md:hidden">
+      <div className="flex flex-wrap items-center justify-center gap-2 px-6 md:hidden">
         {["React", "Next.js", "Node.js", "Python"].map((name) => {
           const Icon = getTechIcon(name);
           return (
             <span
               key={name}
-              className="inline-flex items-center gap-2 text-sm font-medium text-primary/75"
+              className="inline-flex items-center gap-2 rounded-pill border border-card-border bg-card px-3.5 py-1.5 text-sm font-medium text-primary/85"
             >
-              {Icon && <Icon aria-hidden="true" className="size-5" />}
+              {Icon && <Icon aria-hidden="true" className="size-4" />}
               {name}
             </span>
           );
@@ -79,7 +78,7 @@ export default function HomePage() {
       </div>
 
       {/* Selected work — curated 3-project preview */}
-      <section id="work" className="scroll-mt-24 px-6 pb-24 md:px-12 lg:pr-20">
+      <section id="work" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -118,7 +117,7 @@ export default function HomePage() {
       </section>
 
       {/* About — bio left, icon-led metadata right */}
-      <section id="about" className="scroll-mt-24 px-6 pb-24 md:px-12 lg:pr-20">
+      <section id="about" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
           <SectionHeading large>About</SectionHeading>
         </FadeUp>
@@ -152,7 +151,7 @@ export default function HomePage() {
       </section>
 
       {/* Tools / stack */}
-      <section id="skills" className="scroll-mt-24 px-6 pb-24 md:px-12 lg:pr-20">
+      <section id="skills" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
           <SectionHeading large>Tools I Build With</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -181,7 +180,7 @@ export default function HomePage() {
       {/* Experience */}
       <section
         id="experience"
-        className="scroll-mt-24 px-6 pb-24 md:px-12 lg:pr-20"
+        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
       >
         <FadeUp>
           <SectionHeading large>Experience</SectionHeading>
@@ -195,7 +194,7 @@ export default function HomePage() {
       {/* Achievements & Recognition — evidence behind the expertise */}
       <section
         id="achievements"
-        className="scroll-mt-24 px-6 pb-24 md:px-12 lg:pr-20"
+        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
       >
         <FadeUp>
           <SectionHeading large>Achievements &amp; Recognition</SectionHeading>
@@ -249,7 +248,7 @@ export default function HomePage() {
       {/* Final CTA / contact */}
       <section
         id="contact"
-        className="scroll-mt-24 px-6 pb-28 pt-4 md:px-12 lg:pr-20"
+        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
       >
         <FadeUp>
           <h2 className="font-heading text-[2rem] font-medium uppercase leading-[1.05] text-primary md:text-[3.5rem]">
@@ -268,6 +267,27 @@ export default function HomePage() {
             <MapPin aria-hidden="true" className="size-3.5" />
             Rwanda · Available for remote work
           </p>
+
+          {/* Secondary socials — kept out of the hero to reduce noise */}
+          <div className="mt-8 flex flex-wrap items-center gap-2.5">
+            {[
+              { label: "Chat on WhatsApp", href: siteConfig.whatsappUrl, Icon: FaWhatsapp },
+              { label: "Instagram profile", href: siteConfig.instagramUrl, Icon: FaInstagram },
+            ]
+              .filter((s) => s.href)
+              .map(({ label, href, Icon }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
+                >
+                  <Icon aria-hidden="true" className="size-4" />
+                  {label}
+                </a>
+              ))}
+          </div>
         </FadeUp>
       </section>
     </>

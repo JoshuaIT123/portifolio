@@ -7,20 +7,22 @@ type TechListProps = {
   className?: string;
 };
 
-/** Renders tech names with their brand icons in a wrapping row. */
+/** Renders tech names with their brand icons as uniform pill badges
+ *  that wrap cleanly on any viewport width. */
 export function TechList({ items, size = "md", className = "" }: TechListProps) {
-  const iconSize = size === "sm" ? "size-3.5" : "size-4";
+  const iconSize = size === "sm" ? "size-3" : "size-4";
+  const pillPad = size === "sm" ? "px-2.5 py-1" : "px-3.5 py-1.5";
   const labelSize =
     size === "sm" ? "text-xs uppercase tracking-[0.14em]" : "text-sm";
 
   return (
-    <ul className={`flex flex-wrap gap-x-5 gap-y-2 ${className}`}>
+    <ul className={`flex flex-wrap gap-2 ${className}`}>
       {items.map((item) => {
         const Icon = getTechIcon(item);
         return (
           <li
             key={item}
-            className={`inline-flex items-center gap-2 ${
+            className={`inline-flex items-center gap-2 rounded-pill border border-card-border bg-card ${pillPad} ${
               size === "sm" ? "text-muted" : "text-primary"
             }`}
           >

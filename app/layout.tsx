@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import { Inter, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 
@@ -6,7 +7,7 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import { Sidebar } from "@/components/Sidebar";
 import { Footer } from "@/components/Footer";
 import { MobileNav } from "@/components/MobileNav";
-import { navItems, siteConfig } from "@/lib/site";
+import { navItems, heroContent, siteConfig } from "@/lib/site";
 
 // Self-hosted via next/font: zero layout shift, no external requests.
 // Exposed as CSS variables consumed in globals.css (@theme inline).
@@ -48,7 +49,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+  themeColor: "#0f0f11",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -69,10 +70,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Full-height identity + nav sidebar (desktop); drawer below lg */}
         <Sidebar items={navItems} />
 
-        {/* Slim top bar: theme toggle (always) + hamburger (below lg) */}
-        <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-end gap-2 px-6 py-5">
-          <ThemeToggle />
-          <MobileNav items={navItems} />
+        {/* Top bar: name/wordmark on the left (mobile/tablet — the sidebar
+            carries identity on lg+), theme toggle + hamburger on the right */}
+        <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-6 py-5">
+          <Link
+            href="/#intro"
+            className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent lg:hidden"
+          >
+            {heroContent.identity}
+          </Link>
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <MobileNav items={navItems} />
+          </div>
         </header>
 
         {/* Content column: independent scroll container on lg+, with a thin

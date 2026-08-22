@@ -18,10 +18,11 @@ export const siteConfig = {
   description:
     "I build digital products, web applications & AI systems that solve real problems.",
   githubUrl: "https://github.com/mucyuneje",
-  /** Shown as icon links in the hero — REPLACE with your real profiles */
+  /** Hero pill + contact section — REPLACE with your real profiles */
   linkedinUrl: "https://www.linkedin.com/in/arsene-mucyuneje",
   email: "hello@mucyuneje.space",
-  /** WhatsApp — wa.me link uses the number in international format, no "+" */
+  /** WhatsApp + Instagram — secondary channels, shown in the contact
+   *  section only (the hero keeps GitHub / LinkedIn / Email) */
   whatsappUrl: "https://wa.me/250784222615",
   instagramUrl: "https://instagram.com/mucyuneje",
 };
@@ -52,8 +53,8 @@ export const navItems: NavItem[] = [
 ];
 
 export const heroContent = {
-  /** Identity badge above the role kicker — hidden on lg+, where the
-   *  sidebar already shows the name (mobile/tablet keep it above the menu) */
+  /** Wordmark shown top-left in the fixed header (below lg) and in the
+   *  mobile drawer — the sidebar carries it on large screens */
   identity: "Mucyuneje Hirwa Arsene",
   /** Role + base line, rendered as the accent kicker */
   role: "Software Developer & IT Consultant based in Rwanda",

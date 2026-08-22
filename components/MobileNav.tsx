@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import type { NavItem } from "@/lib/site";
+import { heroContent } from "@/lib/site";
 import { NavLinks } from "@/components/NavLinks";
 
 type MobileNavProps = {
@@ -61,10 +62,10 @@ export function MobileNav({ items }: MobileNavProps) {
             exit={reduceMotion ? undefined : { opacity: 0, x: "100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {/* Drawer header mirrors the fixed page header */}
+            {/* Drawer header mirrors the fixed page header: name left, close right */}
             <div className="flex items-center justify-between px-6 py-5">
-              <span className="text-xs font-medium uppercase tracking-[0.125rem] text-muted">
-                Menu
+              <span className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary">
+                {heroContent.identity}
               </span>
               <button
                 type="button"
