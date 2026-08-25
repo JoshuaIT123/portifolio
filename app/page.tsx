@@ -1,46 +1,58 @@
 import type { Metadata } from "next";
 import { ArrowRight, MapPin } from "lucide-react";
+import Link from "next/link";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
-import { AchievementStats } from "@/components/achievements/AchievementStats";
-import { AchievementsView } from "@/components/achievements/AchievementsView";
-import { FeaturedAchievement } from "@/components/achievements/FeaturedAchievement";
-import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { FadeUp } from "@/components/FadeUp";
 import { getTechIcon } from "@/lib/tech-icons";
-import {
-  homepageAchievements,
-  featuredAchievements,
-  orderedAchievements,
-} from "@/lib/achievements";
 import { Hero } from "@/components/Hero";
 import { PillButton } from "@/components/PillButton";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
-import { TechList } from "@/components/TechList";
 import { TechMarquee } from "@/components/TechMarquee";
 import {
-  aboutContent,
-  experience,
   finalCta,
-  githubSection,
   heroContent,
   highlightedTech,
-  leadershipPrograms,
   projects,
   siteConfig,
-  tools,
 } from "@/lib/site";
 
 export const metadata: Metadata = {
-  // absolute: pins the full brand title (template in layout.tsx applies to
-  // child segments only, never this same-segment page)
   title: { absolute: siteConfig.title },
   description: siteConfig.description,
   alternates: {
     canonical: "/",
   },
 };
+
+const quickLinks = [
+  {
+    label: "About",
+    href: "/about",
+    description: "Learn about my background, skills and what I do.",
+  },
+  {
+    label: "Projects",
+    href: "/projects",
+    description: "See the products, apps and systems I've built.",
+  },
+  {
+    label: "Experience",
+    href: "/experience",
+    description: "My professional timeline and leadership programs.",
+  },
+  {
+    label: "Achievements",
+    href: "/achievements",
+    description: "Certifications, awards and recognitions.",
+  },
+  {
+    label: "Contact",
+    href: "/contact",
+    description: "Get in touch for projects or collaboration.",
+  },
+];
 
 export default function HomePage() {
   return (
@@ -61,9 +73,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Mobile: static pills of the strongest technologies — clean, no
-          cut-off motion; the animated marquee takes over on md+.
-          Items come from highlightedTech in lib/site.ts (single source). */}
+      {/* Mobile: static pills of the strongest technologies */}
       <div className="flex flex-wrap items-center justify-center gap-2 px-6 md:hidden">
         {highlightedTech.map((name) => {
           const Icon = getTechIcon(name);
@@ -85,27 +95,26 @@ export default function HomePage() {
       </div>
 
       {/* Selected work — curated 3-project preview */}
-      <section id="work" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <SectionHeading large>Selected Work</SectionHeading>
               <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-                A selection of products, applications and systems I&apos;ve built.
+                A selection of products, applications and systems I&apos;ve
+                built.
               </p>
             </div>
-            <a
-              href={siteConfig.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/projects"
               className="group inline-flex items-center gap-2 pb-1 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
             >
-              View more work
+              View all projects
               <ArrowRight
                 aria-hidden="true"
                 className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-1"
               />
-            </a>
+            </Link>
           </div>
         </FadeUp>
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -125,115 +134,38 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* About — bio left, icon-led metadata right */}
-      <section id="about" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      {/* Quick links to sub-pages */}
+      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
-          <SectionHeading large>About</SectionHeading>
+          <SectionHeading large>Explore</SectionHeading>
+          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+            Learn more about me, my work and how to get in touch.
+          </p>
         </FadeUp>
-        <div className="mt-12 grid gap-12 md:grid-cols-[2fr_1fr]">
-          <FadeUp delay={0.08}>
-            <p className="max-w-[36rem] text-lg leading-relaxed text-primary/85">
-              {aboutContent.intro}
-            </p>
-          </FadeUp>
-          <FadeUp delay={0.16}>
-            <dl className="flex flex-col space-y-6">
-              {aboutContent.facts.map((fact) => (
-                <div key={fact.label} className="flex items-start gap-3">
-                  <fact.icon
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {quickLinks.map((link, i) => (
+            <FadeUp key={link.href} delay={0.08 + i * 0.06}>
+              <Link
+                href={link.href}
+                className="group flex flex-col rounded-card border border-card-border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:shadow-[0_0_40px_-12px_color-mix(in_srgb,var(--accent)_30%,transparent)]"
+              >
+                <h3 className="font-heading text-lg font-semibold text-primary group-hover:text-accent">
+                  {link.label}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">
+                  {link.description}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                  View
+                  <ArrowRight
                     aria-hidden="true"
-                    className="mt-0.5 size-5 shrink-0 text-muted"
+                    className="size-3.5 transition-transform duration-200 group-hover:translate-x-1"
                   />
-                  <div>
-                    <dt className="text-xs font-semibold uppercase tracking-wider text-muted">
-                      {fact.label}
-                    </dt>
-                    <dd className="mt-1 text-sm font-medium text-primary">
-                      {fact.value}
-                    </dd>
-                  </div>
-                </div>
-              ))}
-            </dl>
-          </FadeUp>
-        </div>
-      </section>
-
-      {/* Tools / stack */}
-      <section id="skills" className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20">
-        <FadeUp>
-          <SectionHeading large>Tools I Build With</SectionHeading>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            The tools and technologies I reach for daily.
-          </p>
-        </FadeUp>
-        <ul className="mt-8 divide-y divide-card-border border-t border-card-border">
-          {tools.map((tool, i) => (
-            <li
-              key={tool.category}
-              className="grid gap-1 py-5 md:grid-cols-[200px_1fr] md:gap-10"
-            >
-              <FadeUp delay={i * 0.05}>
-                <span className="block pt-0.5 text-xs uppercase tracking-[0.18em] text-muted">
-                  {tool.category}
                 </span>
-              </FadeUp>
-              <FadeUp delay={0.05 + i * 0.05}>
-                <TechList items={tool.items} />
-              </FadeUp>
-            </li>
+              </Link>
+            </FadeUp>
           ))}
-        </ul>
-      </section>
-
-      {/* Experience */}
-      <section
-        id="experience"
-        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
-      >
-        <FadeUp>
-          <SectionHeading large>Experience</SectionHeading>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Roles, teams and programs that shaped how I work.
-          </p>
-        </FadeUp>
-        <ExperienceTimeline
-          entries={experience}
-          leadership={leadershipPrograms}
-        />
-      </section>
-
-      {/* Achievements & Recognition — evidence behind the expertise */}
-      <section
-        id="achievements"
-        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
-      >
-        <FadeUp>
-          <SectionHeading large>Achievements &amp; Recognition</SectionHeading>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
-            Certifications, competitions and programs that back the skills
-            above with evidence.
-          </p>
-        </FadeUp>
-
-        <FadeUp delay={0.08} className="mt-10">
-          <AchievementStats />
-        </FadeUp>
-
-        {/* Tier 1 recognition leads */}
-        {featuredAchievements[0] && (
-          <FadeUp delay={0.12} className="mt-14">
-            <FeaturedAchievement achievement={featuredAchievements[0]} />
-          </FadeUp>
-        )}
-
-        {/* Highlights <-> full collection toggle */}
-        <FadeUp delay={0.16} className="mt-12">
-          <AchievementsView
-            highlights={homepageAchievements}
-            all={orderedAchievements}
-          />
-        </FadeUp>
+        </div>
       </section>
 
       {/* GitHub */}
@@ -241,27 +173,24 @@ export default function HomePage() {
         <FadeUp>
           <div className="rounded-card border border-card-border bg-card p-8 md:p-14">
             <h2 className="max-w-[35rem] font-heading text-3xl font-medium leading-tight text-primary md:text-4xl">
-              {githubSection.heading}
+              I build, experiment &amp; learn in public.
             </h2>
             <p className="mt-4 max-w-[27.5rem] text-sm leading-relaxed text-muted md:text-base">
-              {githubSection.description}
+              Explore my projects, experiments and open-source work on GitHub.
             </p>
             <PillButton
               variant="primary"
               href={siteConfig.githubUrl}
               className="mt-10"
             >
-              {githubSection.cta}
+              View GitHub ↗
             </PillButton>
           </div>
         </FadeUp>
       </section>
 
       {/* Final CTA / contact */}
-      <section
-        id="contact"
-        className="scroll-mt-24 px-6 py-14 md:px-12 md:py-20 lg:pr-20"
-      >
+      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
         <FadeUp>
           <h2 className="font-heading text-[2rem] font-medium uppercase leading-[1.05] text-primary md:text-[3.5rem]">
             {finalCta.headingLines[0]}
@@ -271,20 +200,27 @@ export default function HomePage() {
           <p className="mt-6 max-w-[26.25rem] text-sm leading-relaxed text-muted md:text-base">
             {finalCta.description}
           </p>
-          <PillButton variant="primary" href={finalCta.href} className="mt-10">
-            {finalCta.cta}
+          <PillButton variant="primary" href="/contact" className="mt-10">
+            Get in touch ↗
           </PillButton>
-          {/* Only real links are shown — no invented contact channels */}
           <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
             <MapPin aria-hidden="true" className="size-3.5" />
             Rwanda · Available for remote work
           </p>
 
-          {/* Secondary socials — kept out of the hero to reduce noise */}
+          {/* Secondary socials */}
           <div className="mt-8 flex flex-wrap items-center gap-2.5">
             {[
-              { label: "Chat on WhatsApp", href: siteConfig.whatsappUrl, Icon: FaWhatsapp },
-              { label: "Instagram profile", href: siteConfig.instagramUrl, Icon: FaInstagram },
+              {
+                label: "Chat on WhatsApp",
+                href: siteConfig.whatsappUrl,
+                Icon: FaWhatsapp,
+              },
+              {
+                label: "Instagram profile",
+                href: siteConfig.instagramUrl,
+                Icon: FaInstagram,
+              },
             ]
               .filter((s) => s.href)
               .map(({ label, href, Icon }) => (

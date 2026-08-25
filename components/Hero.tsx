@@ -80,11 +80,11 @@ export function Hero({
         <div className="flex flex-wrap items-center gap-3">
           <PillButton
             variant="primary"
-            href={email ? `mailto:${email}` : "/#contact"}
+            href={email ? `mailto:${email}` : "/contact"}
           >
             Get in Touch
           </PillButton>
-          <PillButton variant="secondary" href="/#work">
+          <PillButton variant="secondary" href="/projects">
             View Work
           </PillButton>
         </div>

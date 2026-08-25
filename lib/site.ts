@@ -63,16 +63,15 @@ export type NavItem = {
   active?: boolean;
 };
 
-/** Shared by desktop sidebar + mobile drawer. Anchors map to section ids;
- *  the "/#" form keeps them working from sub-routes like /achievements. */
+/** Shared by desktop sidebar + mobile drawer. Each item maps to a real
+ *  route — Google needs distinct URLs to generate Sitelinks. */
 export const navItems: NavItem[] = [
-  { label: "Intro", href: "/#intro", active: true },
-  { label: "Work", href: "/#work" },
-  { label: "About", href: "/#about" },
-  { label: "Skills", href: "/#skills" },
-  { label: "Experience", href: "/#experience" },
-  { label: "Achievements", href: "/#achievements" },
-  { label: "Contact", href: "/#contact" },
+  { label: "Intro", href: "/", active: true },
+  { label: "Work", href: "/projects" },
+  { label: "About", href: "/about" },
+  { label: "Experience", href: "/experience" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const heroContent = {

@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------------------
  * JSON-LD structured data builder
- * Produces a single @graph with three linked entities:
+ * Produces a single @graph with linked entities:
  *   Person                — who Arsene is (identity for the knowledge panel)
  *   WebSite               — the site entity, publisher-linked to the Person
  *   SiteNavigationElement — named section links; explicit hierarchy signals
@@ -27,8 +27,6 @@ export function buildJsonLd({ navItems }: BuildJsonLdArgs) {
         "@type": "Person",
         "@id": personId,
         name: siteConfig.name,
-        // Historical name ordering used across older profiles/pages —
-        // helps search engines reconcile both spellings to one entity
         alternateName: "Arsene Mucyuneje Hirwa",
         jobTitle: siteConfig.role,
         description: siteConfig.description,
@@ -63,10 +61,47 @@ export function buildJsonLd({ navItems }: BuildJsonLdArgs) {
           "@type": "ListItem",
           position: i + 1,
           name: item.label,
-          // Anchors like "/#work" resolve against the canonical origin so
-          // Google can map each named section of the single-page site
           url: `${siteConfig.url}${item.href}`,
         })),
+      },
+    ],
+  };
+}
+
+/* ---------------------------------------------------------------------------
+ * BreadcrumbList JSON-LD — rendered on sub-pages so Google displays
+ * enhanced search result snippets with breadcrumb trails.
+ * ------------------------------------------------------------------------- */
+
+const pageLabels: Record<string, string> = {
+  about: "About",
+  projects: "Projects",
+  experience: "Experience",
+  achievements: "Achievements",
+  contact: "Contact",
+};
+
+export function buildBreadcrumbJsonLd(pathname: string) {
+  const segment = pathname.split("/").filter(Boolean)[0];
+  if (!segment) return null;
+
+  const pageName = pageLabels[segment] ?? segment;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteConfig.url,
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: pageName,
+        item: `${siteConfig.url}${pathname}`,
       },
     ],
   };

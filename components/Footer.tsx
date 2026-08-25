@@ -1,6 +1,16 @@
+import Link from "next/link";
+
 import { siteConfig, socials } from "@/lib/site";
 
-/** Minimal footer: name + role, social links, copyright. */
+const footerLinks = [
+  { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Experience", href: "/experience" },
+  { label: "Achievements", href: "/achievements" },
+  { label: "Contact", href: "/contact" },
+];
+
+/** Minimal footer: page links, name + role, social links, copyright. */
 export function Footer() {
   return (
     <footer className="border-t border-card-border px-6 py-8 md:px-12 lg:pr-20">
@@ -11,6 +21,19 @@ export function Footer() {
           </p>
           <p className="mt-1 text-xs text-muted">{siteConfig.role}</p>
         </div>
+
+        <ul className="flex items-center gap-6">
+          {footerLinks.map((link) => (
+            <li key={link.label}>
+              <Link
+                href={link.href}
+                className="text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
+              >
+                {link.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <ul className="flex items-center gap-6">
           {socials.map((social) => (

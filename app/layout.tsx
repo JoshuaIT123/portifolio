@@ -109,7 +109,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               theme toggle on desktop): name left, theme + menu right */}
           <header className="fixed inset-x-0 top-0 z-40 flex items-center justify-between gap-2 px-6 py-5 lg:hidden">
             <Link
-              href="/#intro"
+              href="/"
               className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary transition-colors hover:text-accent"
             >
               {heroContent.identity}
