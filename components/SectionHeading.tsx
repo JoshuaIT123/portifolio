@@ -18,11 +18,6 @@ export function SectionHeading({
       }
       style={!large ? { color: "var(--accent)" } : undefined}
     >
-      {large && (
-        <span className="mr-3 font-mono text-base font-normal" style={{ color: "var(--accent)" }}>
-          01.
-        </span>
-      )}
       {children}
     </Tag>
   );

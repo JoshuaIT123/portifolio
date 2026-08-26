@@ -9,7 +9,7 @@ type PillButtonProps = {
 };
 
 const baseStyles =
-  "inline-flex items-center justify-center rounded-pill px-8 py-3.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97]";
+  "inline-flex items-center justify-center rounded-pill px-8 py-3.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97] cursor-pointer";
 
 const variantStyles = {
   primary:
@@ -26,11 +26,9 @@ export function PillButton({
 }: PillButtonProps) {
   const classes = `${baseStyles} ${variantStyles[variant]} ${className}`;
 
-  /* Use plain <a> for mailto/tel so the browser handles them directly
-   * without any client-side routing interference. */
   if (href.startsWith("mailto:") || href.startsWith("tel:")) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} className={classes} style={{ cursor: "pointer" }}>
         {children}
       </a>
     );

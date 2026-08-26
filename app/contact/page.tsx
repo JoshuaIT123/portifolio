@@ -44,15 +44,28 @@ export default function ContactPage() {
               software? I&apos;m available for internships, collaborations
               and consulting.
             </p>
-            <PillButton
-              variant="primary"
+
+            {/* Email button */}
+            <div className="mt-10">
+              <PillButton
+                variant="primary"
+                href={`mailto:${siteConfig.email}`}
+              >
+                Send me an email
+              </PillButton>
+            </div>
+
+            {/* Visible email address for easy copying */}
+            <a
               href={`mailto:${siteConfig.email}`}
-              className="mt-12"
+              className="mt-4 inline-block font-mono text-sm transition-colors duration-300 hover:text-accent"
+              style={{ color: "var(--text-muted)" }}
             >
-              Send an Email ↗
-            </PillButton>
-            <p className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-muted">
-              <FaLocationDot aria-hidden="true" className="size-4" />
+              {siteConfig.email}
+            </a>
+
+            <p className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-muted">
+              <FaLocationDot aria-hidden="true" className="size-4" style={{ color: "var(--accent)" }} />
               Rwanda · Available for remote work
             </p>
           </div>
@@ -101,7 +114,8 @@ export default function ContactPage() {
                 <dd>
                   <a
                     href={`mailto:${siteConfig.email}`}
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="text-sm transition-colors hover:text-accent"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {siteConfig.email}
                   </a>
@@ -114,7 +128,8 @@ export default function ContactPage() {
                 <dd>
                   <a
                     href={`tel:${siteConfig.phone}`}
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="text-sm transition-colors hover:text-accent"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {siteConfig.phone}
                   </a>
@@ -129,7 +144,8 @@ export default function ContactPage() {
                     href={siteConfig.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="text-sm transition-colors hover:text-accent"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {siteConfig.githubUrl.replace("https://", "")}
                   </a>
@@ -144,7 +160,8 @@ export default function ContactPage() {
                     href={siteConfig.linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                    className="text-sm transition-colors hover:text-accent"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {siteConfig.linkedinUrl.replace("https://", "")}
                   </a>

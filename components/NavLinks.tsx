@@ -32,7 +32,6 @@ export function NavLinks({
             <NavLink
               item={{ ...item, active }}
               onClick={onNavigate}
-              index={i}
             />
           </li>
         );

@@ -4,29 +4,18 @@ import type { NavItem } from "@/lib/site";
 type NavLinkProps = {
   item: NavItem;
   onClick?: () => void;
-  index?: number;
 };
 
-export function NavLink({ item, onClick, index }: NavLinkProps) {
-  const number = index !== undefined ? `0${index + 1}.` : undefined;
-
+export function NavLink({ item, onClick }: NavLinkProps) {
   return (
     <Link
       href={item.href}
       onClick={onClick}
       aria-current={item.active ? "page" : undefined}
-      className="group relative flex items-center gap-2 py-2 text-sm transition-colors duration-300"
+      className="group relative py-2 text-sm font-medium transition-colors duration-300"
     >
-      {number && (
-        <span
-          className="font-mono text-xs transition-colors duration-300"
-          style={{ color: item.active ? "var(--accent)" : "var(--text-muted)" }}
-        >
-          {number}
-        </span>
-      )}
       <span
-        className={`font-medium transition-colors duration-300 ${
+        className={`transition-colors duration-300 ${
           item.active ? "text-accent" : "text-muted group-hover:text-primary"
         }`}
       >
