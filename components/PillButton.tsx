@@ -9,29 +9,35 @@ type PillButtonProps = {
 };
 
 const baseStyles =
-  "inline-flex items-center justify-center rounded-pill px-6 py-3 text-sm font-semibold transition-all duration-200 active:scale-[0.98]";
+  "inline-flex items-center justify-center rounded-pill px-8 py-3.5 text-sm font-semibold transition-all duration-300 active:scale-[0.97]";
 
 const variantStyles = {
-  /** Solid lime with a soft glow — pure black text for WCAG AAA contrast */
   primary:
-    "bg-accent text-black shadow-[0_0_24px_color-mix(in_srgb,var(--accent)_25%,transparent)] hover:shadow-[0_0_36px_color-mix(in_srgb,var(--accent)_40%,transparent)] hover:brightness-90",
-  /** Neutral outline that picks up the accent on hover */
+    "bg-accent/10 text-accent border border-accent/50 hover:bg-accent/20 hover:border-accent hover:shadow-[0_0_20px_-4px_var(--accent)]",
   secondary:
-    "border border-white/25 bg-transparent text-primary hover:border-accent hover:text-accent",
+    "border border-muted/30 bg-transparent text-primary hover:border-accent hover:text-accent hover:shadow-[0_0_20px_-4px_var(--accent)]",
 } as const;
 
-/** Pill-shaped CTA rendered as a real link. */
 export function PillButton({
   variant,
   href,
   children,
   className = "",
 }: PillButtonProps) {
+  const classes = `${baseStyles} ${variantStyles[variant]} ${className}`;
+
+  /* Use plain <a> for mailto/tel so the browser handles them directly
+   * without any client-side routing interference. */
+  if (href.startsWith("mailto:") || href.startsWith("tel:")) {
+    return (
+      <a href={href} className={classes}>
+        {children}
+      </a>
+    );
+  }
+
   return (
-    <Link
-      href={href}
-      className={`${baseStyles} ${variantStyles[variant]} ${className}`}
-    >
+    <Link href={href} className={classes}>
       {children}
     </Link>
   );

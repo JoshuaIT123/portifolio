@@ -12,8 +12,10 @@ import {
   SiReact,
   SiTailwindcss,
   SiVuedotjs,
+  SiBitcoin,
 } from "react-icons/si";
 import {
+  FaBolt,
   FaBrain,
   FaCode,
   FaDiagramProject,
@@ -42,7 +44,10 @@ export const techIcons: Record<string, TechIcon> = {
   Docker: SiDocker,
   AI: FaWandMagicSparkles,
   "Machine Learning": FaBrain,
-  Bitcoin: SiNodedotjs,
+  Bitcoin: SiBitcoin,
+  Lightning: FaBolt,
+  "Lightning Network": FaBolt,
+  "UTXO Model": SiBitcoin,
   Blockchain: FaLink,
   "Blockchain Basics": FaLink,
   "API Integration": FaDiagramProject,

@@ -1,15 +1,9 @@
 type SectionHeadingProps = {
   children: React.ReactNode;
-  /** Render as plain label instead of an h2 (for sub-blocks). */
   as?: "h2" | "p";
-  /** Reference-style page header scale (~40-48px bold) for section tops. */
   large?: boolean;
 };
 
-/**
- * Shared section heading. Default is the small uppercase eyebrow; `large`
- * renders the big page-header treatment used at the top of each section.
- */
 export function SectionHeading({
   children,
   as: Tag = "h2",
@@ -19,10 +13,16 @@ export function SectionHeading({
     <Tag
       className={
         large
-          ? "font-heading text-4xl font-bold tracking-tight text-primary md:text-[2.75rem]"
-          : "text-xs font-medium uppercase tracking-[0.18em] text-muted"
+          ? "font-heading text-5xl font-bold tracking-tight text-primary md:text-[3.5rem]"
+          : "text-sm font-medium uppercase tracking-[0.2em]"
       }
+      style={!large ? { color: "var(--accent)" } : undefined}
     >
+      {large && (
+        <span className="mr-3 font-mono text-base font-normal" style={{ color: "var(--accent)" }}>
+          01.
+        </span>
+      )}
       {children}
     </Tag>
   );

@@ -1,29 +1,29 @@
 @import "tailwindcss";
 
-/* Global scale: 75% root font-size. All rem-based Tailwind utilities
- * (text, spacing, radii) shrink proportionally — like 75% browser zoom,
- * without CSS zoom. px values in markup are avoided on purpose. */
+/* Global scale: 87.5% root font-size for professional readability */
 html {
-  font-size: 75%;
+  font-size: 87.5%;
 }
 
 /* ---------------------------------------------------------------------------
- * Design tokens — Professional Banking Theme
- * Deep navy base with refined gold accents for a financial-grade feel.
+ * Gazi Jarin-inspired color palette
+ * Deep navy base with teal (#64ffda) accent — clean, modern, developer-focused.
  * ------------------------------------------------------------------------- */
 :root {
-  --bg: #0a0e1a;
-  --bg-secondary: #111827;
-  --accent: #c9a84c;
-  --text-primary: #f0f0f5;
-  --text-muted: #8b8fa3;
-  --card-bg: #141b2d;
-  --card-border: rgba(201, 168, 76, 0.12);
+  --bg: #0a192f;
+  --bg-light: #112240;
+  --bg-lighter: #233554;
+  --accent: #64ffda;
+  --text-primary: #ccd6f6;
+  --text-secondary: #a8b2d1;
+  --text-muted: #8892b0;
+  --card-bg: #112240;
+  --card-border: rgba(100, 255, 218, 0.1);
 }
 
 @theme inline {
   --color-bg: var(--bg);
-  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-secondary: var(--bg-light);
   --color-accent: var(--accent);
   --color-primary: var(--text-primary);
   --color-muted: var(--text-muted);
@@ -35,7 +35,7 @@ html {
     sans-serif;
 
   --radius-pill: 999px;
-  --radius-card: 1.25rem;
+  --radius-card: 1rem;
 }
 
 body {
@@ -56,40 +56,96 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
- * Light theme — clean, institutional look for daytime browsing
+ * Light theme
  * ------------------------------------------------------------------------- */
 html.light {
-  --bg: #f5f3ee;
-  --bg-secondary: #ebe8e1;
-  --accent: #9a7b2f;
-  --text-primary: #1a1a2e;
-  --text-muted: #6b6f80;
+  --bg: #f0f4f8;
+  --bg-light: #ffffff;
+  --bg-lighter: #e2e8f0;
+  --accent: #0a6e5c;
+  --text-primary: #1a202c;
+  --text-secondary: #4a5568;
+  --text-muted: #718096;
   --card-bg: #ffffff;
-  --card-border: rgba(154, 123, 47, 0.15);
+  --card-border: rgba(10, 110, 92, 0.12);
 }
 
-/* Thin, minimal scrollbar */
+/* Thin scrollbar */
 .thin-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: var(--card-border) transparent;
+  scrollbar-color: var(--bg-lighter) transparent;
 }
 .thin-scrollbar::-webkit-scrollbar {
   width: 6px;
 }
 .thin-scrollbar::-webkit-scrollbar-thumb {
-  background: var(--card-border);
+  background: var(--bg-lighter);
   border-radius: 999px;
 }
 .thin-scrollbar::-webkit-scrollbar-track {
   background: transparent;
 }
 
-/* Tech marquee strip */
+/* ---------------------------------------------------------------------------
+ * Animations — smooth, Gazi-style reveals
+ * ------------------------------------------------------------------------- */
+
+/* Marquee */
 @keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Smooth fade-up entrance */
+@keyframes fade-up {
   from {
-    transform: translateX(0);
+    opacity: 0;
+    transform: translateY(20px);
   }
   to {
-    transform: translateX(-50%);
+    opacity: 1;
+    transform: translateY(0);
   }
+}
+
+/* Fade in from left */
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Scale in */
+@keyframes scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Typewriter blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Gradient shimmer for headings */
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+/* Floating animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
 }

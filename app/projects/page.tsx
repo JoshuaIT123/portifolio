@@ -11,13 +11,11 @@ import { projects, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-    description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
-  alternates: {
-    canonical: "/projects",
-  },
+  description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
+  alternates: { canonical: "/projects" },
   openGraph: {
     title: `Projects | ${siteConfig.name}`,
-  description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
+    description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
     url: "/projects",
   },
 };
@@ -28,12 +26,12 @@ export default function ProjectsPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
+      <section className="px-8 py-16 md:px-12 md:py-24 lg:px-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
               <SectionHeading large>Projects</SectionHeading>
-              <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+              <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
                 A selection of products, applications and systems I&apos;ve
                 built.
               </p>
@@ -52,9 +50,9 @@ export default function ProjectsPage() {
           </div>
         </FadeUp>
 
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, i) => (
-            <FadeUp key={project.title} delay={0.08 + i * 0.08}>
+            <FadeUp key={project.title} delay={0.08 + i * 0.1} direction="scale">
               <ProjectCard
                 title={project.title}
                 description={project.description}
@@ -68,19 +66,18 @@ export default function ProjectsPage() {
           ))}
         </div>
 
-        {/* GitHub CTA */}
         <FadeUp delay={0.4} className="mt-16">
-          <div className="rounded-card border border-card-border bg-card p-8 md:p-14">
-            <h2 className="max-w-[35rem] font-heading text-3xl font-medium leading-tight text-primary md:text-4xl">
+          <div className="rounded-card border border-card-border bg-card p-10 md:p-16">
+            <h2 className="max-w-[38rem] font-heading text-4xl font-medium leading-tight text-primary md:text-5xl">
               I build, experiment &amp; learn in public.
             </h2>
-            <p className="mt-4 max-w-[27.5rem] text-sm leading-relaxed text-muted md:text-base">
+            <p className="mt-5 max-w-[28rem] text-base leading-relaxed text-muted md:text-lg">
               Explore my projects, experiments and open-source work on GitHub.
             </p>
             <PillButton
               variant="primary"
               href={siteConfig.githubUrl}
-              className="mt-10"
+              className="mt-12"
             >
               View GitHub ↗
             </PillButton>

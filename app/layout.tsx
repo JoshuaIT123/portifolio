@@ -8,6 +8,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { JsonLd } from "@/components/JsonLd";
 import { NavLinks } from "@/components/NavLinks";
+import { NavAvatar } from "@/components/NavAvatar";
 import { buildJsonLd } from "@/lib/json-ld";
 import { navItems, siteConfig, seoKeywords } from "@/lib/site";
 
@@ -63,7 +64,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0a0e1a",
+  themeColor: "#0a192f",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -82,33 +83,36 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           }}
         />
 
-        {/* Top navigation bar */}
-        <header className="sticky top-0 z-50 border-b border-card-border bg-bg/80 backdrop-blur-xl">
-          <div className="mx-auto flex h-16 max-w-[1200px] items-center justify-between px-6 md:px-10">
+        <header className="sticky top-0 z-50 border-b border-card-border bg-bg/85 backdrop-blur-xl">
+          <div className="mx-auto flex h-20 max-w-[1200px] items-center justify-between px-6 md:px-10">
             <Link
               href="/"
-              className="font-heading text-lg font-bold tracking-tight text-primary transition-colors hover:text-accent"
+              className="flex items-center gap-3 transition-opacity duration-300 hover:opacity-80"
             >
-              {siteConfig.name}
+              <NavAvatar />
+              <span
+                className="font-heading text-xl font-bold tracking-tight"
+                style={{ color: "var(--accent)" }}
+              >
+                JN.
+              </span>
             </Link>
 
-            {/* Desktop nav */}
-            <nav aria-label="Primary" className="hidden items-center gap-8 md:flex">
+            <nav aria-label="Primary" className="hidden items-center gap-10 md:flex">
               <NavLinks
                 items={navItems}
-                ulClassName="flex items-center gap-1"
+                ulClassName="flex items-center gap-2"
                 liClassName=""
               />
             </nav>
 
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-4">
               <ThemeToggle />
               <MobileNav items={navItems} />
             </div>
           </div>
         </header>
 
-        {/* Main content — full width, centered */}
         <div className="mx-auto max-w-[1200px]">
           <main className="relative">{children}</main>
           <Footer />

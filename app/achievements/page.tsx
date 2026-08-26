@@ -18,9 +18,7 @@ import { siteConfig } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Achievements",
   description: `Certifications, awards, competitions and leadership programs completed by ${siteConfig.name}.`,
-  alternates: {
-    canonical: "/achievements",
-  },
+  alternates: { canonical: "/achievements" },
   openGraph: {
     title: `Achievements | ${siteConfig.name}`,
     description: `Certifications, awards, competitions and leadership programs completed by ${siteConfig.name}.`,
@@ -34,28 +32,26 @@ export default function AchievementsPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
+      <section className="px-8 py-16 md:px-12 md:py-24 lg:px-20">
         <FadeUp>
           <SectionHeading large>Achievements &amp; Recognition</SectionHeading>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
+          <p className="mt-4 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
             Certifications, competitions and programs that back the skills
             above with evidence.
           </p>
         </FadeUp>
 
-        <FadeUp delay={0.08} className="mt-10">
+        <FadeUp delay={0.08} className="mt-12">
           <AchievementStats />
         </FadeUp>
 
-        {/* Tier 1 recognition leads */}
         {featuredAchievements[0] && (
           <FadeUp delay={0.12} className="mt-14">
             <FeaturedAchievement achievement={featuredAchievements[0]} />
           </FadeUp>
         )}
 
-        {/* Highlights <-> full collection toggle */}
-        <FadeUp delay={0.16} className="mt-12">
+        <FadeUp delay={0.16} className="mt-14">
           <AchievementsView
             highlights={homepageAchievements}
             all={orderedAchievements}

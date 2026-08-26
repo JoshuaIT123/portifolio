@@ -12,13 +12,11 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-    description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
-  alternates: {
-    canonical: "/contact",
-  },
+  description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
+  alternates: { canonical: "/contact" },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-  description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
     url: "/contact",
   },
 };
@@ -29,19 +27,19 @@ export default function ContactPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
+      <section className="px-8 py-16 md:px-12 md:py-24 lg:px-20">
         <FadeUp>
           <SectionHeading large>Get in Touch</SectionHeading>
         </FadeUp>
 
         <FadeUp delay={0.08}>
-          <div className="mt-12 max-w-xl">
-            <h2 className="font-heading text-[2rem] font-medium uppercase leading-[1.05] text-primary md:text-[3.5rem]">
+          <div className="mt-14 max-w-2xl">
+            <h2 className="font-heading text-[2.5rem] font-medium uppercase leading-[1.05] text-primary md:text-[4rem]">
               Have an idea?
               <br />
               Let&apos;s build it.
             </h2>
-            <p className="mt-6 max-w-[26.25rem] text-sm leading-relaxed text-muted md:text-base">
+            <p className="mt-8 max-w-[28rem] text-base leading-relaxed text-muted md:text-lg">
               Have a project, business problem, or idea that could become
               software? I&apos;m available for internships, collaborations
               and consulting.
@@ -49,20 +47,19 @@ export default function ContactPage() {
             <PillButton
               variant="primary"
               href={`mailto:${siteConfig.email}`}
-              className="mt-10"
+              className="mt-12"
             >
               Send an Email ↗
             </PillButton>
-            <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
-              <FaLocationDot aria-hidden="true" className="size-3.5" />
+            <p className="mt-8 inline-flex items-center gap-2 text-sm font-medium text-muted">
+              <FaLocationDot aria-hidden="true" className="size-4" />
               Rwanda · Available for remote work
             </p>
           </div>
         </FadeUp>
 
-        {/* Secondary socials */}
-        <FadeUp delay={0.16} className="mt-12">
-          <div className="flex flex-wrap items-center gap-2.5">
+        <FadeUp delay={0.16} className="mt-14">
+          <div className="flex flex-wrap items-center gap-3">
             {[
               {
                 label: "Chat on WhatsApp",
@@ -82,7 +79,7 @@ export default function ContactPage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
+                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-4 py-2.5 text-sm font-medium text-muted transition-all duration-300 hover:text-primary hover:scale-105"
                 >
                   <Icon aria-hidden="true" className="size-4" />
                   {label}
@@ -91,13 +88,12 @@ export default function ContactPage() {
           </div>
         </FadeUp>
 
-        {/* Quick contact info */}
         <FadeUp delay={0.24} className="mt-16">
-          <div className="rounded-card border border-card-border bg-card p-8 md:p-10">
-            <h3 className="font-heading text-lg font-semibold text-primary">
+          <div className="rounded-card border border-card-border bg-card p-10 md:p-12">
+            <h3 className="font-heading text-xl font-semibold text-primary">
               Other ways to reach me
             </h3>
-            <dl className="mt-6 space-y-4">
+            <dl className="mt-8 space-y-5">
               <div className="flex items-start gap-3">
                 <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
                   Email

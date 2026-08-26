@@ -15,18 +15,18 @@ export function Footer() {
     <footer className="border-t border-card-border px-6 py-10 md:px-10 lg:px-20">
       <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
-          <p className="text-xs font-medium uppercase tracking-[0.125rem] text-primary">
+          <p className="text-sm font-medium text-primary">
             {siteConfig.name}
           </p>
-          <p className="mt-1 text-xs text-muted">{siteConfig.role}</p>
+          <p className="mt-1.5 text-sm text-muted">{siteConfig.role}</p>
         </div>
 
-        <ul className="flex flex-wrap items-center gap-5">
+        <ul className="flex flex-wrap items-center gap-6">
           {footerLinks.map((link) => (
             <li key={link.label}>
               <Link
                 href={link.href}
-                className="text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
+                className="text-sm text-muted transition-colors duration-300 hover:text-accent"
               >
                 {link.label}
               </Link>
@@ -34,7 +34,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <ul className="flex items-center gap-5">
+        <ul className="flex items-center gap-6">
           {socials.map((social) => (
             <li key={social.label}>
               <a
@@ -42,7 +42,7 @@ export function Footer() {
                 {...(social.href.startsWith("http")
                   ? { target: "_blank", rel: "noopener noreferrer" }
                   : {})}
-                className="text-xs uppercase tracking-[0.14em] text-muted transition-colors duration-200 hover:text-primary"
+                className="text-sm text-muted transition-colors duration-300 hover:text-accent"
               >
                 {social.label}
               </a>
@@ -50,7 +50,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <p className="text-xs text-muted">&copy; 2026 {siteConfig.name}</p>
+        <p className="text-sm text-muted">&copy; 2026 {siteConfig.name}</p>
       </div>
     </footer>
   );

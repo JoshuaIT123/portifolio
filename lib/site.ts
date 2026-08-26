@@ -12,7 +12,7 @@ export const siteConfig = {
   url: "https://joshuandamage.dev",
   title: "Joshua NDAMAGE | Software Developer",
   description:
-    "Software developer specializing in full-stack web applications, fintech solutions and digital platforms. Building technology that drives financial innovation.",
+    "Software developer specializing in full-stack web applications, fintech solutions, Bitcoin and Lightning Network. Building technology that drives financial innovation in Africa.",
   githubUrl: "https://github.com/JoshuaIT123",
   linkedinUrl: "https://www.linkedin.com/in/joshuandamage",
   email: "ndamagejoshua@gmail.com",
@@ -31,17 +31,21 @@ export const seoKeywords = [
   "React developer",
   "Next.js developer",
   "Node.js backend",
+  "Bitcoin",
+  "Lightning Network",
+  "Lightning payments",
   "blockchain",
-  "bitcoin",
   "cryptocurrency",
+  "Bitcoin development",
   "database design",
   "Rwanda software developer",
   "Kigali tech",
   "banking technology",
+  "fintech Africa",
 ];
 
 export const profile = {
-  avatar: "/images/profile.png",
+  avatar: "/images/profile.jpg",
   avatarAlt: "Portrait of Joshua NDAMAGE",
 };
 
@@ -64,9 +68,9 @@ export const heroContent = {
   identity: "Joshua NDAMAGE",
   role: "Software Developer & Fintech Enthusiast based in Rwanda",
   headline:
-    "I build scalable web applications, fintech platforms & digital systems that solve real problems.",
+    "I build scalable web applications, fintech platforms, Bitcoin & Lightning Network solutions that solve real problems.",
   headlineShort:
-    "I build web applications, fintech platforms & digital systems.",
+    "I build web applications, fintech platforms & Bitcoin Lightning solutions.",
 };
 
 export type Project = {
@@ -106,7 +110,7 @@ export const projects: Project[] = [
     description:
       "A cryptocurrency portfolio tracking dashboard that monitors Bitcoin and altcoin holdings, displays real-time price charts and provides portfolio analytics. Integrates with public APIs to fetch live market data and compute gains.",
     image: "/images/Echlon-Work1.png",
-    tech: ["React", "Python", "API Integration"],
+    tech: ["React", "Python", "API Integration", "Bitcoin"],
   },
   {
     title: "SmartFleet — Vehicle Tracking",
@@ -115,11 +119,18 @@ export const projects: Project[] = [
     image: "/images/ubwamitechhouse.png",
     tech: ["React", "Node.js", "Real-time Systems"],
   },
+  {
+    title: "Lightning Invoice Generator",
+    description:
+      "A Bitcoin Lightning Network invoicing tool that generates payment requests, manages channels and provides real-time payment tracking. Built to explore instant, low-cost Bitcoin micropayments for African fintech.",
+    image: "/images/work-1.svg",
+    tech: ["Node.js", "Bitcoin", "Lightning Network", "React"],
+  },
 ];
 
 export const aboutFacts = [
   { iconName: "MapPin" as const, label: "Based in", value: "Rwanda" },
-  { iconName: "Layers" as const, label: "Focus", value: "Software · Fintech · Web" },
+  { iconName: "Layers" as const, label: "Focus", value: "Software · Fintech · Bitcoin" },
   { iconName: "Code2" as const, label: "Role", value: "Developer · Innovator" },
   {
     iconName: "Handshake" as const,
@@ -129,17 +140,17 @@ export const aboutFacts = [
 ];
 
 export const aboutIntro =
-  "I'm Joshua, a software developer from Rwanda with a passion for building full-stack web applications and exploring fintech solutions. I work across frontend, backend and databases, turning real-world problems into practical software — especially in the financial technology space.";
+  "I'm Joshua, a software developer from Rwanda with a passion for building full-stack web applications and exploring fintech solutions — especially around Bitcoin and the Lightning Network. I work across frontend, backend and databases, turning real-world problems into practical software that drives financial innovation in Africa.";
 
 export const tools = [
   { category: "Frontend", items: ["React", "Next.js", "Vue", "Tailwind CSS"] },
   { category: "Backend", items: ["Node.js", "Express", "Python"] },
   { category: "Database", items: ["MySQL", "MongoDB"] },
-  { category: "Fintech & Crypto", items: ["Bitcoin", "Blockchain Basics", "API Integration"] },
+  { category: "Bitcoin & Lightning", items: ["Bitcoin", "Lightning Network", "UTXO Model", "Blockchain Basics", "API Integration"] },
   { category: "Tools", items: ["Git", "GitHub", "Docker"] },
 ];
 
-export const highlightedTech = ["React", "Next.js", "Node.js", "Bitcoin"];
+export const highlightedTech = ["React", "Next.js", "Node.js", "Bitcoin", "Lightning"];
 
 export type ExperienceEntry = {
   org: string;
@@ -167,17 +178,19 @@ export const experience: ExperienceEntry[] = [
     ],
   },
   {
-    org: "Bitcoin & Blockchain",
-    role: "Self-Taught Crypto Enthusiast",
+    org: "Bitcoin & Lightning Network",
+    role: "Bitcoin & Lightning Developer",
     date: "2022 — Present",
-    tags: ["Bitcoin", "Blockchain", "Fintech"],
+    tags: ["Bitcoin", "Lightning", "Fintech", "Blockchain"],
     description:
-      "Self-driven exploration of Bitcoin fundamentals, blockchain technology and their applications in financial systems.",
+      "Deep exploration of Bitcoin fundamentals, Lightning Network payments and their applications in African financial systems.",
     responsibilities: [
-      "Studied Bitcoin whitepaper, transaction models and UTXO-based systems.",
+      "Studied Bitcoin whitepaper, UTXO transaction models and scripting system.",
+      "Explored Lightning Network architecture — channels, routing, invoices and micropayments.",
+      "Researched how Lightning Network can enable instant, low-cost payments across Africa.",
       "Built a crypto portfolio tracking dashboard to understand market data APIs.",
       "Explored smart contract basics and decentralized application (dApp) architecture.",
-      "Researched how blockchain can improve banking, payments and remittances in Africa.",
+      "Researched how Bitcoin and Lightning can improve banking, payments and remittances in Rwanda.",
     ],
   },
   {

@@ -29,12 +29,10 @@ function initials(org: string): string {
  */
 export function ExperienceTimeline({ entries, leadership }: ExperienceTimelineProps) {
   return (
-    <div className="mt-12 border-l-2 border-card-border pl-8">
+    <div className="mt-14 border-l-2 border-card-border pl-10">
       {entries.map((entry, i) => (
-        <div key={entry.org} className="relative pb-14 last:pb-0">
-          {/* Timeline node — the company logo itself sits on the axis
-              (initials fallback when no logo file exists) */}
-          <span className="absolute -left-[calc(2rem+23px)] top-3 flex size-12 items-center justify-center overflow-hidden rounded-full border border-card-border bg-bg">
+        <div key={entry.org} className="relative pb-16 last:pb-0">
+          <span className="absolute -left-[calc(2.5rem+23px)] top-3 flex size-12 items-center justify-center overflow-hidden rounded-full border-2 border-accent/30 bg-bg transition-all duration-300 hover:border-accent hover:shadow-[0_0_16px_-2px_color-mix(in_srgb,var(--accent)_30%,transparent)]">
             {entry.logo ? (
               <Image
                 src={entry.logo}
