@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-/** Human-readable labels for each route segment. */
 const routeLabels: Record<string, string> = {
   about: "About",
   projects: "Projects",
@@ -12,11 +11,6 @@ const routeLabels: Record<string, string> = {
   contact: "Contact",
 };
 
-/**
- * Breadcrumb navigation — renders "Home > [Page]" on sub-pages.
- * Google uses BreadcrumbList schema (injected via JSON-LD) together with
- * these visible links to display enhanced search result snippets.
- */
 export function Breadcrumbs() {
   const pathname = usePathname();
   const segment = pathname.split("/").filter(Boolean)[0];
@@ -26,7 +20,7 @@ export function Breadcrumbs() {
   const label = routeLabels[segment] ?? segment;
 
   return (
-    <nav aria-label="Breadcrumb" className="px-6 pt-28 pb-2 md:px-12 lg:pr-20">
+    <nav aria-label="Breadcrumb" className="px-6 pt-8 pb-2 md:px-10 lg:px-20">
       <ol className="flex items-center gap-2 text-sm text-muted">
         <li>
           <Link

@@ -2,27 +2,20 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { FaBars, FaXmark } from "react-icons/fa6";
 import type { NavItem } from "@/lib/site";
-import { heroContent } from "@/lib/site";
+import { siteConfig } from "@/lib/site";
 import { NavLinks } from "@/components/NavLinks";
 
 type MobileNavProps = {
   items: NavItem[];
 };
 
-/**
- * Mobile navigation: hamburger button (below the `md` breakpoint) that opens
- * a full-screen slide-in drawer with the same nav items and larger (48px+)
- * touch targets. Closes on link click, Escape key, or backdrop tap.
- */
 export function MobileNav({ items }: MobileNavProps) {
   const [open, setOpen] = useState(false);
   const reduceMotion = useReducedMotion();
-
   const close = useCallback(() => setOpen(false), []);
 
-  // Lock body scroll + close on Escape while the drawer is open
   useEffect(() => {
     if (!open) return;
     document.body.style.overflow = "hidden";
@@ -37,7 +30,7 @@ export function MobileNav({ items }: MobileNavProps) {
   }, [open, close]);
 
   return (
-    <div className="lg:hidden">
+    <div className="md:hidden">
       <button
         type="button"
         onClick={() => setOpen(true)}
@@ -46,7 +39,7 @@ export function MobileNav({ items }: MobileNavProps) {
         aria-label="Open navigation menu"
         className="flex size-10 items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
       >
-        <Menu className="size-6" aria-hidden="true" />
+        <FaBars className="size-5" aria-hidden="true" />
       </button>
 
       <AnimatePresence>
@@ -56,16 +49,15 @@ export function MobileNav({ items }: MobileNavProps) {
             role="dialog"
             aria-modal="true"
             aria-label="Navigation menu"
-            className="fixed inset-0 z-50 flex flex-col bg-bg/95 backdrop-blur-sm"
-            initial={reduceMotion ? false : { opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={reduceMotion ? undefined : { opacity: 0, x: "100%" }}
+            className="fixed inset-0 z-50 flex flex-col bg-bg/95 backdrop-blur-xl"
+            initial={reduceMotion ? false : { opacity: 0, y: "-100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={reduceMotion ? undefined : { opacity: 0, y: "-100%" }}
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
-            {/* Drawer header mirrors the fixed page header: name left, close right */}
             <div className="flex items-center justify-between px-6 py-5">
-              <span className="font-heading text-[0.9375rem] font-bold tracking-tight text-primary">
-                {heroContent.identity}
+              <span className="font-heading text-base font-bold tracking-tight text-primary">
+                {siteConfig.name}
               </span>
               <button
                 type="button"
@@ -73,16 +65,15 @@ export function MobileNav({ items }: MobileNavProps) {
                 aria-label="Close navigation menu"
                 className="flex size-10 items-center justify-center rounded-full text-primary transition-colors hover:text-accent"
               >
-                <X className="size-6" aria-hidden="true" />
+                <FaXmark className="size-5" aria-hidden="true" />
               </button>
             </div>
 
-            <nav aria-label="Mobile" className="px-8 pt-[12vh]">
-              {/* Scroll-spy driven; min-h-12 = 48px minimum touch target */}
+            <nav aria-label="Mobile" className="flex flex-col items-center gap-6 pt-[20vh]">
               <NavLinks
                 items={items}
-                ulClassName="flex flex-col gap-2"
-                liClassName="flex min-h-12 items-center"
+                ulClassName="flex flex-col items-center gap-6"
+                liClassName=""
                 onNavigate={close}
               />
             </nav>

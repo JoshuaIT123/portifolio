@@ -11,13 +11,13 @@ import { projects, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: `Explore projects built by ${siteConfig.name} — full-stack web applications, AI systems, real-time tracking platforms and digital products.`,
+    description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: `Projects | ${siteConfig.name}`,
-    description: `Explore projects built by ${siteConfig.name} — full-stack web applications, AI systems, real-time tracking platforms and digital products.`,
+  description: `Explore projects built by ${siteConfig.name} — streaming platforms, booking systems, fintech dashboards and full-stack web applications.`,
     url: "/projects",
   },
 };
@@ -28,7 +28,7 @@ export default function ProjectsPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>

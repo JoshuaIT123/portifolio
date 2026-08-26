@@ -2,12 +2,7 @@ import type { MetadataRoute } from "next";
 
 import { siteConfig } from "@/lib/site";
 
-/* ---------------------------------------------------------------------------
- * Dynamic sitemap — served at https://mucyuneje.space/sitemap.xml
- *
- * All routes are real pages with distinct URLs — Google needs these to
- * generate Sitelinks in search results.
- * ------------------------------------------------------------------------- */
+/* Dynamic sitemap for Joshua NDAMAGE's portfolio website. */
 
 type RouteEntry = {
   path: string;

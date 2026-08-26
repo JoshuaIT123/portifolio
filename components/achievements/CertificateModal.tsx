@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, X } from "lucide-react";
+import { FaArrowUpRightFromSquare, FaXmark } from "react-icons/fa6";
 
 import type { Achievement } from "@/lib/achievements";
 
@@ -61,7 +61,7 @@ export function CertificateModal({ achievement, onClose }: CertificateModalProps
               aria-label="Close preview"
               className="absolute right-4 top-4 z-10 rounded-full border border-card-border bg-bg-secondary p-2 text-muted transition-colors hover:text-primary"
             >
-              <X aria-hidden="true" className="size-4" />
+              <FaXmark aria-hidden="true" className="size-4" />
             </button>
 
             {/* Preview kept modest — lazy-loaded via next/image */}
@@ -102,7 +102,7 @@ export function CertificateModal({ achievement, onClose }: CertificateModalProps
                   className="mt-6 inline-flex items-center gap-1 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
                 >
                   Verify Credential
-                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                  <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
                 </a>
               )}
             </div>

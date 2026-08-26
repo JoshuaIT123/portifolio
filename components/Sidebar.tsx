@@ -28,10 +28,10 @@ export function Sidebar({ items }: SidebarProps) {
         <Link href="/" className="block">
           <Avatar src={profile.avatar} alt="" size={152} priority className="size-[4.75rem]" />
           <span className="mt-6 block font-heading text-[1.4375rem] font-bold leading-tight tracking-tight text-primary">
-            Mucyuneje Hirwa Arsene
+            Joshua NDAMAGE
           </span>
           <span className="mt-3 block text-base font-normal leading-relaxed text-muted">
-            Software Developer &amp; IT Consultant
+            Software Developer &amp; Fintech Enthusiast
           </span>
         </Link>
         <ThemeToggle />

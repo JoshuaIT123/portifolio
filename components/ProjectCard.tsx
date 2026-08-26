@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 import Image from "next/image";
 
 import { ProjectGallery } from "@/components/ProjectGallery";
@@ -47,7 +47,7 @@ export function ProjectCard({
           <h3 className="font-heading text-base font-medium text-primary">
             {title}
           </h3>
-          <ArrowUpRight
+          <FaArrowUpRightFromSquare
             aria-hidden="true"
             className="mt-0.5 size-4 shrink-0 text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
           />
@@ -89,7 +89,7 @@ export function ProjectCard({
                   className="inline-flex items-center gap-0.5 whitespace-nowrap text-sm font-semibold text-primary transition-colors duration-200 hover:text-accent"
                 >
                   Live Demo
-                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                  <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
                 </a>
               )}
               {sourceUrl && (
@@ -100,7 +100,7 @@ export function ProjectCard({
                   className="inline-flex items-center gap-0.5 whitespace-nowrap text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
                 >
                   Source Code
-                  <ArrowUpRight aria-hidden="true" className="size-3.5" />
+                  <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
                 </a>
               )}
             </div>

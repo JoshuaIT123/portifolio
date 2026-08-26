@@ -1,4 +1,4 @@
-import { ArrowUpRight } from "lucide-react";
+import { FaArrowUpRightFromSquare } from "react-icons/fa6";
 
 import type { Achievement } from "@/lib/achievements";
 import { categoryIcons } from "@/components/achievements/category-icons";
@@ -71,7 +71,7 @@ export function CertificateCard({
           className="mt-auto inline-flex items-center gap-1 pt-4 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
         >
           View Credential
-          <ArrowUpRight aria-hidden="true" className="size-3.5" />
+          <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
         </a>
       )}
     </div>

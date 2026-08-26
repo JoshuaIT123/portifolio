@@ -1,6 +1,6 @@
 "use client";
 
-import { Moon, Sun } from "lucide-react";
+import { FaMoon, FaSun } from "react-icons/fa6";
 
 /**
  * Fixed top-right theme toggle. Flips a `.light` class on <html>, which
@@ -26,8 +26,8 @@ export function ThemeToggle() {
       className="flex size-10 items-center justify-center rounded-full text-primary transition-colors duration-200 hover:text-accent"
     >
       {/* Sun shows in dark mode, Moon in light mode */}
-      <Sun aria-hidden="true" className="size-5 [html.light_&]:hidden" />
-      <Moon aria-hidden="true" className="hidden size-5 [html.light_&]:block" />
+      <FaSun aria-hidden="true" className="size-5 [html.light_&]:hidden" />
+      <FaMoon aria-hidden="true" className="hidden size-5 [html.light_&]:block" />
     </button>
   );
 }

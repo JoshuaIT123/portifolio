@@ -1,12 +1,5 @@
 /* ---------------------------------------------------------------------------
- * Achievements & Recognition — centralized data model.
- *
- * Add new certificates/awards here; the UI (homepage preview + /achievements)
- * derives everything — stats, filters, timeline, featured picks — from this
- * list. Fields marked optional stay empty until real information exists;
- * nothing is invented or exaggerated.
- *
- * Source documents live in /public/certificates (linked via credentialUrl).
+ * Achievements & Recognition — centralized data model for Joshua NDAMAGE.
  * ------------------------------------------------------------------------- */
 
 export const ACHIEVEMENT_CATEGORIES = [
@@ -19,26 +12,18 @@ export const ACHIEVEMENT_CATEGORIES = [
 
 export type AchievementCategory = (typeof ACHIEVEMENT_CATEGORIES)[number];
 
-/** 1 = major recognition (prominent), 2 = strong credential, 3 = supporting. */
 export type AchievementTier = 1 | 2 | 3;
 
 export type Achievement = {
   title: string;
-  /** Issuing organization, competition host or program name. */
   organization?: string;
   category: AchievementCategory;
-  /** Year of completion/result — omitted until confirmed. */
   year?: string;
   description: string;
-  /** Ranking or outcome, e.g. "National Top 10 Finalist". */
   result?: string;
-  /** Short skill tags rendered as pills. */
   skills?: string[];
-  /** External verification / credential URL or local certificate PDF. */
   credentialUrl?: string;
-  /** Certificate preview image under /public — opens in the lightbox. */
   certificateImage?: string;
-  /** Highlighted on the homepage and pinned first on /achievements. */
   featured?: boolean;
   tier: AchievementTier;
 };
@@ -133,7 +118,7 @@ export const achievementsData: Achievement[] = [
     tier: 2,
   },
 
-  /* --- Tier 3: supporting credentials (kept compact) ------------------ */
+  /* --- Tier 3: supporting credentials -------------------------------- */
   {
     title: "AI & Machine Learning — Intermediate",
     organization: "DTP",
@@ -176,29 +161,20 @@ export const achievementsData: Achievement[] = [
   },
 ];
 
-/**
- * Display order everywhere: featured/tier first, supporting credentials last.
- */
 export const orderedAchievements = [...achievementsData].sort(
   (a, b) =>
     Number(Boolean(b.featured)) - Number(Boolean(a.featured)) ||
     a.tier - b.tier,
 );
 
-/** Featured picks for the homepage preview (tier order preserved). */
 export const featuredAchievements = achievementsData.filter(
   (achievement) => achievement.featured,
 );
 
-/** Homepage keeps a tight edit — strongest six after the lead feature. */
 export const homepageAchievements = orderedAchievements
   .filter((achievement) => achievement !== featuredAchievements[0])
   .slice(0, 6);
 
-/**
- * Homepage credibility summary — computed from the data above so the
- * numbers always reflect reality (no inflated counts).
- */
 export function getAchievementStats() {
   const count = (category: AchievementCategory) =>
     achievementsData.filter((achievement) => achievement.category === category)

@@ -10,13 +10,13 @@ import { experience, leadershipPrograms, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: `Professional experience of ${siteConfig.name} — roles, teams and programs that shaped how I work as a software engineer and IT consultant.`,
+    description: `Professional experience of ${siteConfig.name} — roles, programs and projects that shaped how I work as a software developer and fintech enthusiast.`,
   alternates: {
     canonical: "/experience",
   },
   openGraph: {
     title: `Experience | ${siteConfig.name}`,
-    description: `Professional experience of ${siteConfig.name} — roles, teams and programs that shaped how I work as a software engineer and IT consultant.`,
+  description: `Professional experience of ${siteConfig.name} — roles, programs and projects that shaped how I work as a software developer and fintech enthusiast.`,
     url: "/experience",
   },
 };
@@ -27,7 +27,7 @@ export default function ExperiencePage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <SectionHeading large>Experience</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">

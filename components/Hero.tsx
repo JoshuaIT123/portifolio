@@ -1,4 +1,4 @@
-import { Mail } from "lucide-react";
+import { FaEnvelope } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
 import { FaLinkedin } from "react-icons/fa6";
 
@@ -47,7 +47,7 @@ export function Hero({
     {
       label: "Email",
       href: email ? `mailto:${email}` : "",
-      Icon: Mail,
+      Icon: FaEnvelope,
     },
   ].filter((s) => s.href);
 

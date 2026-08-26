@@ -10,11 +10,10 @@ const footerLinks = [
   { label: "Contact", href: "/contact" },
 ];
 
-/** Minimal footer: page links, name + role, social links, copyright. */
 export function Footer() {
   return (
-    <footer className="border-t border-card-border px-6 py-8 md:px-12 lg:pr-20">
-      <div className="flex flex-col gap-5 md:flex-row md:items-center md:justify-between">
+    <footer className="border-t border-card-border px-6 py-10 md:px-10 lg:px-20">
+      <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.125rem] text-primary">
             {siteConfig.name}
@@ -22,7 +21,7 @@ export function Footer() {
           <p className="mt-1 text-xs text-muted">{siteConfig.role}</p>
         </div>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex flex-wrap items-center gap-5">
           {footerLinks.map((link) => (
             <li key={link.label}>
               <Link
@@ -35,7 +34,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <ul className="flex items-center gap-6">
+        <ul className="flex items-center gap-5">
           {socials.map((social) => (
             <li key={social.label}>
               <a
@@ -51,7 +50,7 @@ export function Footer() {
           ))}
         </ul>
 
-        <p className="text-xs text-muted">© 2026 Arsene Mucyuneje</p>
+        <p className="text-xs text-muted">&copy; 2026 {siteConfig.name}</p>
       </div>
     </footer>
   );

@@ -2,9 +2,7 @@ import { ImageResponse } from "next/og";
 
 import { siteConfig } from "@/lib/site";
 
-/* Social share preview (og:image / twitter:image), generated at build time.
- * Replace the JSX below with your own design — or delete this file and drop
- * a static opengraph-image.png (1200x630) into app/ instead. */
+/* Social share preview (og:image / twitter:image), generated at build time. */
 
 export const alt = `${siteConfig.name} — ${siteConfig.role}`;
 export const size = { width: 1200, height: 630 };
@@ -21,10 +19,9 @@ export default function OpengraphImage() {
           flexDirection: "column",
           justifyContent: "center",
           padding: "80px",
-          background: "#0f0f11",
-          // Diagonal lime glow, echoing the site background
+          background: "#0a0e1a",
           backgroundImage:
-            "linear-gradient(135deg, rgba(212,255,61,0.18) 0%, rgba(212,255,61,0) 45%)",
+            "linear-gradient(135deg, rgba(201,168,76,0.15) 0%, rgba(201,168,76,0) 45%)",
         }}
       >
         <div
@@ -33,7 +30,7 @@ export default function OpengraphImage() {
             alignItems: "center",
             gap: "16px",
             fontSize: 24,
-            color: "#9a9a9a",
+            color: "#8b8fa3",
             letterSpacing: 4,
             textTransform: "uppercase",
           }}
@@ -43,10 +40,10 @@ export default function OpengraphImage() {
               width: 14,
               height: 14,
               borderRadius: 999,
-              background: "#d4ff3d",
+              background: "#c9a84c",
             }}
           />
-          Software Engineer &amp; IT Consultant — Rwanda
+          Software Developer &amp; Fintech Enthusiast — Rwanda
         </div>
         <div
           style={{
@@ -55,7 +52,7 @@ export default function OpengraphImage() {
             fontSize: 72,
             fontWeight: 500,
             lineHeight: 1.15,
-            color: "#ffffff",
+            color: "#f0f0f5",
           }}
         >
           {siteConfig.name}
@@ -66,11 +63,11 @@ export default function OpengraphImage() {
             maxWidth: 860,
             fontSize: 28,
             lineHeight: 1.4,
-            color: "#9a9a9a",
+            color: "#8b8fa3",
           }}
         >
-          I build digital products, web applications &amp; AI systems that solve
-          real problems.
+          I build scalable web applications, fintech platforms &amp; digital
+          systems that solve real problems.
         </div>
       </div>
     ),

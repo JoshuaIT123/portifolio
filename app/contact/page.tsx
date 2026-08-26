@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { MapPin } from "lucide-react";
+import { FaLocationDot } from "react-icons/fa6";
 import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -12,13 +12,13 @@ import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for projects, freelance work and collaboration.`,
+    description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
   alternates: {
     canonical: "/contact",
   },
   openGraph: {
     title: `Contact | ${siteConfig.name}`,
-    description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for projects, freelance work and collaboration.`,
+  description: `Get in touch with ${siteConfig.name} — ${siteConfig.role} available for internships, projects and collaboration.`,
     url: "/contact",
   },
 };
@@ -29,7 +29,7 @@ export default function ContactPage() {
     <>
       {breadcrumb && <JsonLd data={breadcrumb} />}
       <Breadcrumbs />
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <SectionHeading large>Get in Touch</SectionHeading>
         </FadeUp>
@@ -43,7 +43,7 @@ export default function ContactPage() {
             </h2>
             <p className="mt-6 max-w-[26.25rem] text-sm leading-relaxed text-muted md:text-base">
               Have a project, business problem, or idea that could become
-              software? I&apos;m available for freelance work, collaborations
+              software? I&apos;m available for internships, collaborations
               and consulting.
             </p>
             <PillButton
@@ -54,7 +54,7 @@ export default function ContactPage() {
               Send an Email ↗
             </PillButton>
             <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
-              <MapPin aria-hidden="true" className="size-3.5" />
+              <FaLocationDot aria-hidden="true" className="size-3.5" />
               Rwanda · Available for remote work
             </p>
           </div>
@@ -108,6 +108,19 @@ export default function ContactPage() {
                     className="text-sm text-primary/80 transition-colors hover:text-accent"
                   >
                     {siteConfig.email}
+                  </a>
+                </dd>
+              </div>
+              <div className="flex items-start gap-3">
+                <dt className="text-xs font-semibold uppercase tracking-wider text-muted w-20 shrink-0">
+                  Phone
+                </dt>
+                <dd>
+                  <a
+                    href={`tel:${siteConfig.phone}`}
+                    className="text-sm text-primary/80 transition-colors hover:text-accent"
+                  >
+                    {siteConfig.phone}
                   </a>
                 </dd>
               </div>

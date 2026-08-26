@@ -1,7 +1,7 @@
 /* ---------------------------------------------------------------------------
  * JSON-LD structured data builder
  * Produces a single @graph with linked entities:
- *   Person                — who Arsene is (identity for the knowledge panel)
+ *   Person                — who Joshua is (identity for the knowledge panel)
  *   WebSite               — the site entity, publisher-linked to the Person
  *   SiteNavigationElement — named section links; explicit hierarchy signals
  *                           that assist Google Sitelinks generation
@@ -27,7 +27,7 @@ export function buildJsonLd({ navItems }: BuildJsonLdArgs) {
         "@type": "Person",
         "@id": personId,
         name: siteConfig.name,
-        alternateName: "Arsene Mucyuneje Hirwa",
+        alternateName: "Joshua NDAMAGE",
         jobTitle: siteConfig.role,
         description: siteConfig.description,
         url: siteConfig.url,

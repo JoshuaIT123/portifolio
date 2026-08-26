@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { ArrowRight, MapPin } from "lucide-react";
+import { FaArrowRight, FaLocationDot } from "react-icons/fa6";
 import Link from "next/link";
-import { FaInstagram, FaWhatsapp } from "react-icons/fa6";
 
 import { FadeUp } from "@/components/FadeUp";
 import { getTechIcon } from "@/lib/tech-icons";
@@ -21,9 +20,7 @@ import {
 export const metadata: Metadata = {
   title: { absolute: siteConfig.title },
   description: siteConfig.description,
-  alternates: {
-    canonical: "/",
-  },
+  alternates: { canonical: "/" },
 };
 
 const quickLinks = [
@@ -57,13 +54,10 @@ const quickLinks = [
 export default function HomePage() {
   return (
     <>
-      {/* Intro / hero — the page's single <h1> lives inside */}
-      <section
-        id="intro"
-        className="scroll-mt-24 px-6 pb-24 pt-28 md:px-12 md:pb-16 md:pt-[16vh] lg:pr-20"
-      >
+      {/* Hero */}
+      <section className="px-6 pb-20 pt-16 md:px-10 md:pt-24 lg:px-20">
         <Hero
-          statusText="Available for projects"
+          statusText="Open to internships"
           role={heroContent.role}
           headline={heroContent.headline}
           headlineShort={heroContent.headlineShort}
@@ -73,7 +67,7 @@ export default function HomePage() {
         />
       </section>
 
-      {/* Mobile: static pills of the strongest technologies */}
+      {/* Mobile tech pills */}
       <div className="flex flex-wrap items-center justify-center gap-2 px-6 md:hidden">
         {highlightedTech.map((name) => {
           const Icon = getTechIcon(name);
@@ -89,13 +83,13 @@ export default function HomePage() {
         })}
       </div>
 
-      {/* Tech marquee — muted auto-scrolling brand strip (md+ only) */}
+      {/* Tech marquee */}
       <div className="hidden md:block">
         <TechMarquee />
       </div>
 
-      {/* Selected work — curated 3-project preview */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      {/* Selected work */}
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
@@ -110,7 +104,7 @@ export default function HomePage() {
               className="group inline-flex items-center gap-2 pb-1 text-sm font-medium text-primary/80 transition-colors duration-200 hover:text-accent"
             >
               View all projects
-              <ArrowRight
+              <FaArrowRight
                 aria-hidden="true"
                 className="size-4 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-1"
               />
@@ -134,8 +128,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Quick links to sub-pages */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      {/* Quick links */}
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <SectionHeading large>Explore</SectionHeading>
           <p className="mt-4 max-w-xl text-base leading-relaxed text-muted sm:text-lg">
@@ -157,7 +151,7 @@ export default function HomePage() {
                 </p>
                 <span className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-accent opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                   View
-                  <ArrowRight
+                  <FaArrowRight
                     aria-hidden="true"
                     className="size-3.5 transition-transform duration-200 group-hover:translate-x-1"
                   />
@@ -169,7 +163,7 @@ export default function HomePage() {
       </section>
 
       {/* GitHub */}
-      <section aria-label="GitHub" className="px-6 pb-24 md:px-12 lg:pr-20">
+      <section aria-label="GitHub" className="px-6 pb-20 md:px-10 lg:px-20">
         <FadeUp>
           <div className="rounded-card border border-card-border bg-card p-8 md:p-14">
             <h2 className="max-w-[35rem] font-heading text-3xl font-medium leading-tight text-primary md:text-4xl">
@@ -189,8 +183,8 @@ export default function HomePage() {
         </FadeUp>
       </section>
 
-      {/* Final CTA / contact */}
-      <section className="px-6 py-14 md:px-12 md:py-20 lg:pr-20">
+      {/* Final CTA */}
+      <section className="px-6 py-14 md:px-10 md:py-20 lg:px-20">
         <FadeUp>
           <h2 className="font-heading text-[2rem] font-medium uppercase leading-[1.05] text-primary md:text-[3.5rem]">
             {finalCta.headingLines[0]}
@@ -204,38 +198,9 @@ export default function HomePage() {
             Get in touch ↗
           </PillButton>
           <p className="mt-6 inline-flex items-center gap-1.5 text-xs font-medium text-muted">
-            <MapPin aria-hidden="true" className="size-3.5" />
+            <FaLocationDot aria-hidden="true" className="size-3.5" />
             Rwanda · Available for remote work
           </p>
-
-          {/* Secondary socials */}
-          <div className="mt-8 flex flex-wrap items-center gap-2.5">
-            {[
-              {
-                label: "Chat on WhatsApp",
-                href: siteConfig.whatsappUrl,
-                Icon: FaWhatsapp,
-              },
-              {
-                label: "Instagram profile",
-                href: siteConfig.instagramUrl,
-                Icon: FaInstagram,
-              },
-            ]
-              .filter((s) => s.href)
-              .map(({ label, href, Icon }) => (
-                <a
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-card-border bg-card px-3.5 py-2 text-sm font-medium text-muted transition-colors duration-200 hover:text-primary"
-                >
-                  <Icon aria-hidden="true" className="size-4" />
-                  {label}
-                </a>
-              ))}
-          </div>
         </FadeUp>
       </section>
     </>

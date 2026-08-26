@@ -8,29 +8,17 @@ html {
 }
 
 /* ---------------------------------------------------------------------------
- * Design tokens
- * Single source of truth for colors, radii, and fonts.
- * Tailwind v4 maps these to utilities via `@theme inline` below:
- *   --bg            -> bg-bg / text-bg ...
- *   --bg-secondary  -> bg-bg-secondary
- *   --accent        -> bg-accent / text-accent / border-accent
- *   --text-primary  -> text-primary
- *   --text-muted    -> text-muted
- *   --card-bg       -> bg-card
- *   --card-border   -> border-card-border
- *   --radius-pill   -> rounded-pill (999px)
- *   --radius-card   -> rounded-card (20px)
+ * Design tokens — Professional Banking Theme
+ * Deep navy base with refined gold accents for a financial-grade feel.
  * ------------------------------------------------------------------------- */
 :root {
-  /* Deep obsidian charcoal — softer than pure black, easier on the eyes
-     on mobile OLED displays while keeping full contrast for text */
-  --bg: #0f0f11;
-  --bg-secondary: #17171a;
-  --accent: #d4ff3d;
-  --text-primary: #ffffff;
-  --text-muted: #a1a1aa;
-  --card-bg: #1a1a1e;
-  --card-border: rgba(255, 255, 255, 0.08);
+  --bg: #0a0e1a;
+  --bg-secondary: #111827;
+  --accent: #c9a84c;
+  --text-primary: #f0f0f5;
+  --text-muted: #8b8fa3;
+  --card-bg: #141b2d;
+  --card-border: rgba(201, 168, 76, 0.12);
 }
 
 @theme inline {
@@ -42,7 +30,6 @@ html {
   --color-card: var(--card-bg);
   --color-card-border: var(--card-border);
 
-  /* Font variables are injected by next/font in app/layout.tsx */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-space-grotesk), ui-sans-serif, system-ui,
     sans-serif;
@@ -56,7 +43,7 @@ body {
   color: var(--text-primary);
 }
 
-/* Accessible focus ring: visible lime outline for keyboard users only */
+/* Accessible focus ring */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
@@ -69,20 +56,19 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
- * Light theme — token overrides applied when ThemeToggle adds `.light` to
- * <html>. Accent is darkened so it keeps readable contrast on white.
+ * Light theme — clean, institutional look for daytime browsing
  * ------------------------------------------------------------------------- */
 html.light {
-  --bg: #f7f7f5;
-  --bg-secondary: #efefec;
-  --accent: #84cc16;
-  --text-primary: #18181b;
-  --text-muted: #55555c;
+  --bg: #f5f3ee;
+  --bg-secondary: #ebe8e1;
+  --accent: #9a7b2f;
+  --text-primary: #1a1a2e;
+  --text-muted: #6b6f80;
   --card-bg: #ffffff;
-  --card-border: rgba(0, 0, 0, 0.08);
+  --card-border: rgba(154, 123, 47, 0.15);
 }
 
-/* Thin, minimal scrollbar for the independently-scrolling content column */
+/* Thin, minimal scrollbar */
 .thin-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--card-border) transparent;
@@ -98,7 +84,7 @@ html.light {
   background: transparent;
 }
 
-/* Tech marquee strip — duplicated list translates by half its width */
+/* Tech marquee strip */
 @keyframes marquee {
   from {
     transform: translateX(0);

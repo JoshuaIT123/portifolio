@@ -1,4 +1,4 @@
-import { ArrowUpRight, Trophy } from "lucide-react";
+import { FaArrowUpRightFromSquare, FaTrophy } from "react-icons/fa6";
 
 import type { Achievement } from "@/lib/achievements";
 
@@ -16,7 +16,7 @@ export function FeaturedAchievement({ achievement }: FeaturedAchievementProps) {
       <div className="flex flex-wrap items-center gap-3">
         {achievement.result && (
           <span className="inline-flex items-center gap-1.5 rounded-pill bg-accent px-3 py-1 text-xs font-bold text-black">
-            <Trophy aria-hidden="true" className="size-3.5" />
+            <FaTrophy aria-hidden="true" className="size-3.5" />
             {achievement.result}
           </span>
         )}
@@ -54,7 +54,7 @@ export function FeaturedAchievement({ achievement }: FeaturedAchievementProps) {
               className="inline-flex items-center gap-1 text-xs font-semibold text-primary/80 transition-colors hover:text-accent"
             >
               View Achievement
-              <ArrowUpRight aria-hidden="true" className="size-3.5" />
+              <FaArrowUpRightFromSquare aria-hidden="true" className="size-3.5" />
             </a>
           )}
         </div>

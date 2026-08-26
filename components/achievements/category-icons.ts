@@ -1,19 +1,20 @@
 import {
-  Award,
-  GraduationCap,
-  Lightbulb,
-  Trophy,
-  Users,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
+  FaAward,
+  FaGraduationCap,
+  FaLightbulb,
+  FaTrophy,
+  FaUsers,
+} from "react-icons/fa6";
+import type { ComponentType } from "react";
 
 import type { AchievementCategory } from "@/lib/achievements";
 
-/** Subtle category indicator used on cards, filters and the timeline. */
-export const categoryIcons: Record<AchievementCategory, LucideIcon> = {
-  Certifications: Award,
-  "Awards & Competitions": Trophy,
-  Leadership: Users,
-  "Programs & Fellowships": GraduationCap,
-  "Projects & Innovation": Lightbulb,
+export type IconComponent = ComponentType<{ className?: string; "aria-hidden"?: boolean | "true" | "false" }>;
+
+export const categoryIcons: Record<AchievementCategory, IconComponent> = {
+  Certifications: FaAward,
+  "Awards & Competitions": FaTrophy,
+  Leadership: FaUsers,
+  "Programs & Fellowships": FaGraduationCap,
+  "Projects & Innovation": FaLightbulb,
 };
